@@ -329,6 +329,52 @@ def cmd_serve(args: argparse.Namespace, t: Theme) -> int:
         return 1
 
 
+def cmd_diff(args: argparse.Namespace, t: Theme) -> int:
+    """Handle 'diff' subcommand comparing base and target schemas."""
+    try:
+        from schema_illustrator_studio.diff_engine import diff_schemas
+        raw_base = resolve_input(args.base_schema)
+        raw_target = resolve_input(args.target_schema)
+
+        ast_base = parse_schema(raw_base)
+        ast_target = parse_schema(raw_target)
+
+        report = diff_schemas(ast_base, ast_target)
+
+        if getattr(args, "json", False):
+            output_result(json.dumps(report.to_dict(), indent=2), getattr(args, "output", None))
+            return 0
+
+        if getattr(args, "migration", False):
+            output_result(report.sql_migration_up, getattr(args, "output", None))
+            return 0
+
+        if getattr(args, "rollback", False):
+            output_result(report.sql_migration_down, getattr(args, "output", None))
+            return 0
+
+        # Human-readable CLI report
+        lines = []
+        color_risk = t.red if report.risk_level in ("CRITICAL", "BREAKING") else (t.yellow if report.risk_level == "MEDIUM" else t.green)
+        lines.append(f"\n{t.bold('✦ Schema Evolution & Migration Drift Report ✦')}")
+        lines.append(f"  {t.dim('Base:')} {ast_base.name}  ->  {t.dim('Target:')} {ast_target.name}")
+        lines.append(f"  {t.dim('Drift Score:')} {color_risk(f'{report.drift_score}/100')}  [{color_risk(report.risk_level)} RISK]")
+        lines.append(f"  {t.dim('Total Changes:')} {report.total_changes}  |  {t.dim('Breaking Changes:')} {color_risk(str(report.breaking_changes_count))}\n")
+
+        lines.append(t.bold("Detected Mutations:"))
+        for c in report.changes:
+            tag = t.red("[BREAKING]") if c.is_breaking else (t.yellow("[WARNING] ") if c.severity.value == "WARNING" else t.green("[SAFE]    "))
+            lines.append(f"  {tag} {c.description}")
+
+        lines.append("")
+        output_result("\n".join(lines), getattr(args, "output", None))
+        return 0
+
+    except Exception as e:
+        print(f"{t.red('Error during schema diff:')} {e}", file=sys.stderr)
+        return 1
+
+
 def cmd_mcp(args: argparse.Namespace, t: Theme) -> int:
     """Handle 'mcp' subcommand."""
     try:
@@ -450,7 +496,7 @@ def cmd_test(args: argparse.Namespace, t: Theme) -> int:
 
         tools_req = {"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}}
         tools_res = server.handle_request(tools_req)
-        assert len(tools_res["result"]["tools"]) == 6
+        assert len(tools_res["result"]["tools"]) >= 6
 
         call_req = {
             "jsonrpc": "2.0",
@@ -466,6 +512,23 @@ def cmd_test(args: argparse.Namespace, t: Theme) -> int:
         passes += 1
     except Exception as e:
         print(f"  {t.red('✗')} {'MCP Server JSON-RPC Protocol':<32} {t.red(f'FAILED: {e}')}")
+        failures += 1
+
+    # 6. Test Differential Schema Evolution Engine
+    from schema_illustrator_studio.diff_engine import diff_schemas
+
+    t0 = time.perf_counter()
+    try:
+        base = parse_schema("CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50));")
+        target = parse_schema("CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50), email VARCHAR(100) NOT NULL);")
+        diff_rep = diff_schemas(base, target)
+        assert diff_rep.total_changes == 1
+        assert diff_rep.breaking_changes_count == 1
+        dt = (time.perf_counter() - t0) * 1000
+        print(f"  {t.green('✓')} {'Schema Evolution Diff Engine':<32} {t.dim(f'({dt:.2f}ms)')}")
+        passes += 1
+    except Exception as e:
+        print(f"  {t.red('✗')} {'Schema Evolution Diff Engine':<32} {t.red(f'FAILED: {e}')}")
         failures += 1
 
     print(f"\n{t.bold('Results:')} {t.green(f'{passes} passed')}, {t.red(f'{failures} failed') if failures else '0 failed'}")
@@ -565,6 +628,16 @@ def build_parser() -> argparse.ArgumentParser:
     p_tst = subparsers.add_parser("test", aliases=["selftest"], help="Internal self-verification test runner.")
     p_tst.add_argument("--no-color", action="store_true", help="Disable color formatting.")
 
+    # 11. diff
+    p_dif = subparsers.add_parser("diff", help="Compute differential schema evolution and migration drift.")
+    p_dif.add_argument("base_schema", help="Path or text of the base/source schema.")
+    p_dif.add_argument("target_schema", help="Path or text of the target/new schema.")
+    p_dif.add_argument("--json", action="store_true", help="Output JSON diff report.")
+    p_dif.add_argument("--migration", action="store_true", help="Output only forward SQL migration script.")
+    p_dif.add_argument("--rollback", action="store_true", help="Output only rollback SQL migration script.")
+    p_dif.add_argument("-o", "--output", help="Save output to file.")
+    p_dif.add_argument("--no-color", action="store_true", help="Disable color formatting.")
+
     return parser
 
 
@@ -601,6 +674,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return cmd_doctor(args, t)
     elif args.command in ("test", "selftest"):
         return cmd_test(args, t)
+    elif args.command == "diff":
+        return cmd_diff(args, t)
 
     parser.print_help()
     return 0

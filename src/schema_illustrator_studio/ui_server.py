@@ -306,6 +306,21 @@ class StudioRequestHandler(BaseHTTPRequestHandler):
             self._send_json({"success": False, "error": "Missing 'schema' in request payload"}, status=HTTPStatus.BAD_REQUEST)
             return
 
+        if path == "/api/diff":
+            target_text = req_data.get("target_schema", "")
+            if not target_text:
+                self._send_json({"success": False, "error": "Missing 'target_schema' for /api/diff"}, status=HTTPStatus.BAD_REQUEST)
+                return
+            try:
+                from schema_illustrator_studio.diff_engine import diff_schemas
+                ast_base = self._parse_ast(schema_text, format_hint)
+                ast_target = self._parse_ast(target_text, req_data.get("target_format", "auto"))
+                report = diff_schemas(ast_base, ast_target)
+                self._send_json({"success": True, "diff": report.to_dict()})
+            except Exception as e:
+                self._send_json({"success": False, "error": str(e)}, status=HTTPStatus.BAD_REQUEST)
+            return
+
         if path == "/api/parse":
             self._handle_parse(schema_text, format_hint)
         elif path == "/api/transpile":

@@ -26,6 +26,14 @@ from schema_illustrator_studio.metrics import (
     analyze_schema,
     calculate_metrics,
 )
+from schema_illustrator_studio.diff_engine import (
+    ChangeAction,
+    ChangeSeverity,
+    SchemaChange,
+    SchemaDiffEngine,
+    SchemaDiffReport,
+    diff_schemas,
+)
 from schema_illustrator_studio.models import (
     Constraint,
     ConstraintType,
@@ -398,6 +406,13 @@ __all__ = [
     "analyze_schema",
     "analyze_schema_metrics",
     "calculate_metrics",
+    # Diff & Migration
+    "SchemaDiffEngine",
+    "SchemaDiffReport",
+    "SchemaChange",
+    "ChangeAction",
+    "ChangeSeverity",
+    "diff_schemas",
     # Compat
     "atomic_write",
     "safe_read_text",

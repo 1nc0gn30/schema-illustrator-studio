@@ -225,6 +225,26 @@ class MCPServer:
             handler=self._tool_schema_diagnostics,
         )
 
+        self.register_tool(
+            name="schema_diff",
+            description="Compute differential schema evolution and migration drift between base and target schemas, detect breaking changes, and synthesize up/down SQL migrations.",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "base_schema": {
+                        "type": "string",
+                        "description": "Base/source schema definition string.",
+                    },
+                    "target_schema": {
+                        "type": "string",
+                        "description": "Target/new schema definition string.",
+                    },
+                },
+                "required": ["base_schema", "target_schema"],
+            },
+            handler=self._tool_schema_diff,
+        )
+
     def _register_default_resources(self) -> None:
         """Register built-in schema template resources."""
         for name, data in SAMPLE_TEMPLATES.items():
@@ -380,6 +400,22 @@ class MCPServer:
             "sample_templates": list(SAMPLE_TEMPLATES.keys()),
         }
         return json.dumps(diag, indent=2)
+
+    def _tool_schema_diff(self, args: Dict[str, Any]) -> str:
+        from schema_illustrator_studio.diff_engine import diff_schemas
+        from schema_illustrator_studio.parsers import parse_schema
+
+        base_raw = args.get("base_schema", "")
+        target_raw = args.get("target_schema", "")
+
+        if not base_raw or not target_raw:
+            raise JSONRPCError(-32602, "Parameters 'base_schema' and 'target_schema' are required.")
+
+        ast_base = parse_schema(base_raw)
+        ast_target = parse_schema(target_raw)
+
+        report = diff_schemas(ast_base, ast_target)
+        return json.dumps(report.to_dict(), indent=2)
 
     # JSON-RPC Dispatcher
     def handle_request(self, request_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
