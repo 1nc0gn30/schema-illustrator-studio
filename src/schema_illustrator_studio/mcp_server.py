@@ -245,6 +245,44 @@ class MCPServer:
             handler=self._tool_schema_diff,
         )
 
+        self.register_tool(
+            name="schema_generate_mock_data",
+            description="Generate relational-referential synthetic mock data from schema with topological foreign-key integrity. Outputs SQL INSERT statements, JSON, or CSV.",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "schema_content": {
+                        "type": "string",
+                        "description": "The raw schema definition string or file path.",
+                    },
+                    "format": {
+                        "type": "string",
+                        "enum": ["auto", "json-schema", "sql", "ts", "graphql"],
+                        "description": "Source schema format.",
+                    },
+                    "output_format": {
+                        "type": "string",
+                        "enum": ["sql", "json", "csv"],
+                        "description": "Format for output mock data (default: 'sql').",
+                    },
+                    "rows_per_entity": {
+                        "type": "integer",
+                        "description": "Number of rows per table/entity (default: 5).",
+                    },
+                    "seed": {
+                        "type": "integer",
+                        "description": "Random seed for deterministic generation (default: 42).",
+                    },
+                    "include_nulls": {
+                        "type": "boolean",
+                        "description": "Whether to inject NULL values into nullable fields (default: false).",
+                    },
+                },
+                "required": ["schema_content"],
+            },
+            handler=self._tool_schema_generate_mock_data,
+        )
+
     def _register_default_resources(self) -> None:
         """Register built-in schema template resources."""
         for name, data in SAMPLE_TEMPLATES.items():
@@ -416,6 +454,35 @@ class MCPServer:
 
         report = diff_schemas(ast_base, ast_target)
         return json.dumps(report.to_dict(), indent=2)
+
+    def _tool_schema_generate_mock_data(self, args: Dict[str, Any]) -> str:
+        from schema_illustrator_studio.mock_generator import MockDataConfig, generate_mock_data
+        from schema_illustrator_studio.parsers import parse_schema
+
+        content = args.get("schema_content", "")
+        if not content:
+            raise JSONRPCError(-32602, "Parameter 'schema_content' is required.")
+
+        fmt = args.get("format")
+        if fmt == "auto":
+            fmt = None
+
+        ast = parse_schema(content, format_hint=fmt)
+        rows = int(args.get("rows_per_entity", 5))
+        seed = int(args.get("seed", 42))
+        include_nulls = bool(args.get("include_nulls", False))
+        out_fmt = str(args.get("output_format", "sql")).lower()
+
+        config = MockDataConfig(rows_per_entity=rows, seed=seed, include_nulls=include_nulls)
+        dataset = generate_mock_data(ast, config=config)
+
+        if out_fmt == "json":
+            return dataset.to_json(indent=2)
+        elif out_fmt == "csv":
+            csv_map = dataset.to_csv_dict()
+            return json.dumps(csv_map, indent=2)
+        else:
+            return dataset.to_sql()
 
     # JSON-RPC Dispatcher
     def handle_request(self, request_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:

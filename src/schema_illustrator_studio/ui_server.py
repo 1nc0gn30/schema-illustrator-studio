@@ -333,6 +333,8 @@ class StudioRequestHandler(BaseHTTPRequestHandler):
             self._handle_mermaid(schema_text, format_hint)
         elif path == "/api/metrics":
             self._handle_metrics(schema_text, format_hint)
+        elif path == "/api/mock":
+            self._handle_mock(schema_text, format_hint, req_data)
         else:
             self._send_json({"success": False, "error": f"Endpoint not found: {path}"}, status=HTTPStatus.NOT_FOUND)
 
@@ -449,6 +451,29 @@ class StudioRequestHandler(BaseHTTPRequestHandler):
                 metrics_res = analyze_schema_metrics(ast)
                 m_data = metrics_res.to_dict() if hasattr(metrics_res, "to_dict") else metrics_res
             self._send_json({"success": True, "metrics": m_data})
+        except Exception as err:
+            self._send_json({"success": False, "error": str(err)}, status=HTTPStatus.BAD_REQUEST)
+
+    def _handle_mock(self, schema_text: str, format_hint: str, req_data: Dict[str, Any]) -> None:
+        """Handle /api/mock for synthetic mock data generation."""
+        try:
+            from schema_illustrator_studio.mock_generator import MockDataConfig, generate_mock_data
+
+            ast = self._parse_ast(schema_text, format_hint)
+            rows = int(req_data.get("rows", 5))
+            seed = int(req_data.get("seed", 42))
+            include_nulls = bool(req_data.get("include_nulls", False))
+            out_format = str(req_data.get("output_format", "sql")).lower()
+
+            config = MockDataConfig(rows_per_entity=rows, seed=seed, include_nulls=include_nulls)
+            dataset = generate_mock_data(ast, config=config)
+
+            if out_format == "json":
+                self._send_json({"success": True, "format": "json", "data": dataset.to_dict(), "entities": dataset.generation_order})
+            elif out_format == "csv":
+                self._send_json({"success": True, "format": "csv", "csv_tables": dataset.to_csv_dict(), "entities": dataset.generation_order})
+            else:
+                self._send_json({"success": True, "format": "sql", "sql": dataset.to_sql(), "entities": dataset.generation_order})
         except Exception as err:
             self._send_json({"success": False, "error": str(err)}, status=HTTPStatus.BAD_REQUEST)
 

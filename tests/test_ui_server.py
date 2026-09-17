@@ -164,6 +164,22 @@ def test_cors_options(live_server):
         assert resp.headers.get("Access-Control-Allow-Origin") == "*"
 
 
+def test_post_mock_api(live_server, sample_sql_schema):
+    """Test POST /api/mock returns synthetic mock dataset."""
+    payload = json.dumps({"schema": sample_sql_schema, "output_format": "json", "rows": 3}).encode("utf-8")
+    req = urllib.request.Request(
+        f"{live_server}/api/mock",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+    )
+    with urllib.request.urlopen(req) as resp:
+        assert resp.status == 200
+        data = json.loads(resp.read().decode("utf-8"))
+        assert data.get("success") is True
+        assert data.get("format") == "json"
+        assert "users" in data.get("data", {})
+
+
 def test_invalid_request_handling(live_server):
     """Test error handling for bad JSON and missing fields."""
     # Bad JSON

@@ -375,6 +375,38 @@ def cmd_diff(args: argparse.Namespace, t: Theme) -> int:
         return 1
 
 
+def cmd_mock(args: argparse.Namespace, t: Theme) -> int:
+    """Handle 'mock' subcommand to generate relational synthetic mock data."""
+    try:
+        from schema_illustrator_studio.mock_generator import MockDataConfig, generate_mock_data
+
+        raw_text = resolve_input(args.input)
+        fmt = None if args.format == "auto" else args.format
+        ast = parse_schema(raw_text, format_hint=fmt)
+
+        config = MockDataConfig(
+            rows_per_entity=args.rows,
+            seed=args.seed,
+            include_nulls=args.include_nulls,
+        )
+        dataset = generate_mock_data(ast, config=config)
+
+        out_type = getattr(args, "type", "sql").lower()
+        if out_type == "json":
+            out_str = dataset.to_json(indent=2)
+        elif out_type == "csv":
+            csv_map = dataset.to_csv_dict()
+            out_str = "\n\n".join([f"=== Table: {name} ===\n{content}" for name, content in csv_map.items()])
+        else:
+            out_str = dataset.to_sql()
+
+        output_result(out_str, args.output)
+        return 0
+    except Exception as e:
+        print(f"{t.red('Error generating mock data:')} {e}", file=sys.stderr)
+        return 1
+
+
 def cmd_mcp(args: argparse.Namespace, t: Theme) -> int:
     """Handle 'mcp' subcommand."""
     try:
@@ -531,6 +563,24 @@ def cmd_test(args: argparse.Namespace, t: Theme) -> int:
         print(f"  {t.red('✗')} {'Schema Evolution Diff Engine':<32} {t.red(f'FAILED: {e}')}")
         failures += 1
 
+    # 7. Test Synthetic Mock Data Generator
+    from schema_illustrator_studio.mock_generator import MockDataConfig, generate_mock_data
+
+    t0 = time.perf_counter()
+    try:
+        m_ast = parse_schema("CREATE TABLE items (id UUID PRIMARY KEY, title VARCHAR(100) NOT NULL, price DECIMAL(10,2));")
+        m_dataset = generate_mock_data(m_ast, config=MockDataConfig(rows_per_entity=3, seed=123))
+        assert "items" in m_dataset.entities_data
+        assert len(m_dataset.entities_data["items"]) == 3
+        sql_out = m_dataset.to_sql()
+        assert "INSERT INTO" in sql_out
+        dt = (time.perf_counter() - t0) * 1000
+        print(f"  {t.green('✓')} {'Synthetic Mock Generator':<32} {t.dim(f'({dt:.2f}ms)')}")
+        passes += 1
+    except Exception as e:
+        print(f"  {t.red('✗')} {'Synthetic Mock Generator':<32} {t.red(f'FAILED: {e}')}")
+        failures += 1
+
     print(f"\n{t.bold('Results:')} {t.green(f'{passes} passed')}, {t.red(f'{failures} failed') if failures else '0 failed'}")
     return 1 if failures else 0
 
@@ -638,6 +688,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_dif.add_argument("-o", "--output", help="Save output to file.")
     p_dif.add_argument("--no-color", action="store_true", help="Disable color formatting.")
 
+    # 12. mock
+    p_mock = subparsers.add_parser("mock", help="Generate relational-referential synthetic mock data from schema.")
+    p_mock.add_argument("input", nargs="?", default=None, help="Schema file path, raw string, or '-' for stdin.")
+    p_mock.add_argument("-f", "--format", choices=["auto", "json-schema", "sql", "ts", "graphql"], default="auto", help="Source schema format.")
+    p_mock.add_argument("-t", "--type", choices=["sql", "json", "csv"], default="sql", help="Output format: sql, json, or csv (default: sql).")
+    p_mock.add_argument("-r", "--rows", type=int, default=5, help="Number of rows per table/entity (default: 5).")
+    p_mock.add_argument("-s", "--seed", type=int, default=42, help="Random seed for reproducible mock generation (default: 42).")
+    p_mock.add_argument("--include-nulls", action="store_true", help="Inject NULLs into nullable fields.")
+    p_mock.add_argument("-o", "--output", help="Save mock data to file.")
+    p_mock.add_argument("--no-color", action="store_true", help="Disable color formatting.")
+
     return parser
 
 
@@ -676,6 +737,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return cmd_test(args, t)
     elif args.command == "diff":
         return cmd_diff(args, t)
+    elif args.command == "mock":
+        return cmd_mock(args, t)
 
     parser.print_help()
     return 0

@@ -34,6 +34,11 @@ from schema_illustrator_studio.diff_engine import (
     SchemaDiffReport,
     diff_schemas,
 )
+from schema_illustrator_studio.mock_generator import (
+    MockDataConfig,
+    MockDataset,
+    generate_mock_data,
+)
 from schema_illustrator_studio.models import (
     Constraint,
     ConstraintType,
@@ -413,6 +418,10 @@ __all__ = [
     "ChangeAction",
     "ChangeSeverity",
     "diff_schemas",
+    # Mock Data Generator
+    "MockDataConfig",
+    "MockDataset",
+    "generate_mock_data",
     # Compat
     "atomic_write",
     "safe_read_text",

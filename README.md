@@ -113,6 +113,27 @@ schema-illustrator mermaid schema.sql
 schema-illustrator metrics schema.sql
 ```
 
+### 5. Generate Relational Synthetic Mock Data
+
+```bash
+# Generate SQL seed INSERT statements respecting foreign-key hierarchy
+schema-illustrator mock schema.sql --rows 10 --type sql --output seeds.sql
+
+# Generate JSON or CSV mock data
+schema-illustrator mock schema.sql --rows 5 --type json
+schema-illustrator mock schema.sql --rows 5 --type csv
+```
+
+### 6. Schema Migration & Drift Evolution
+
+```bash
+# Compare schemas and output breaking change risk analysis
+schema-illustrator diff base_schema.sql target_schema.sql
+
+# Generate forward SQL migration script
+schema-illustrator diff base_schema.sql target_schema.sql --migration
+```
+
 ---
 
 ## 🤖 Model Context Protocol (MCP) Integration
@@ -128,6 +149,8 @@ schema-illustrator metrics schema.sql
 | `schema_export_erd` | Generate standalone SVG ERD diagram or Mermaid ER diagram from schema. |
 | `schema_metrics` | Analyze schema complexity, normalization grade, depth, and circular dependencies. |
 | `schema_sample_templates` | Retrieve built-in production schema templates (E-Commerce, Auth, Social, SaaS). |
+| `schema_diff` | Compute schema evolution drift, detect breaking changes, and synthesize migrations. |
+| `schema_generate_mock_data` | Generate synthetic mock datasets (SQL INSERTs, JSON, CSV) with topological foreign-key integrity. |
 | `schema_diagnostics` | System and parser diagnostics. |
 
 ### Claude Desktop Configuration
