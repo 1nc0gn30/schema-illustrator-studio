@@ -62,6 +62,10 @@ def detect_schema_format(source: Union[str, Dict[str, Any]], filepath: Optional[
     # Clean comments for heuristics
     upper_sample = raw_text[:4000].upper()
 
+    # Check Mermaid erDiagram
+    if upper_sample.startswith("ERDIAGRAM") or "ERDIAGRAM" in upper_sample:
+        return "mermaid"
+
     # Check SQL
     if "CREATE TABLE" in upper_sample or "CREATE TYPE" in upper_sample or "ALTER TABLE" in upper_sample:
         return "sql"
@@ -131,6 +135,11 @@ def parse_schema(
     if detected_format in ("graphql", "gql"):
         gql_parser = GraphQLParser(text_content)
         return gql_parser.parse()
+
+    if detected_format in ("mermaid", "erdiagram"):
+        from schema_illustrator_studio.parsers.mermaid import MermaidERParser
+        m_parser = MermaidERParser(text_content)
+        return m_parser.parse()
 
     if detected_format in ("typescript", "ts", "dts"):
         ts_parser = TypeScriptParser(text_content)

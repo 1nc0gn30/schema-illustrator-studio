@@ -39,10 +39,12 @@ from schema_illustrator_studio.models import (
 from schema_illustrator_studio.parsers import (
     GraphQLParser,
     JSONSchemaParser,
+    MermaidERParser,
     SQLDDLParser,
     TypeScriptParser,
     UnifiedParser,
     detect_schema_format,
+    parse_mermaid_erd,
     parse_schema,
 )
 from schema_illustrator_studio.transpilers import (
@@ -365,6 +367,8 @@ __all__ = [
     "SQLDDLParser",
     "TypeScriptParser",
     "GraphQLParser",
+    "MermaidERParser",
+    "parse_mermaid_erd",
     "UnifiedParser",
     "detect_schema_format",
     "parse_schema",
