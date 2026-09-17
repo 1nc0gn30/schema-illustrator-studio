@@ -1,4 +1,4 @@
-"""Pure Python Threading HTTP Server serving Google Schema Studio Web UI and REST API.
+"""Pure Python Threading HTTP Server serving Schema Illustrator Studio Web UI and REST API.
 
 Provides local-first Web UI hosting and endpoints for schema parsing, transpilation,
 ERD SVG rendering, Mermaid diagram generation, and complexity telemetry with zero
@@ -196,7 +196,7 @@ EMBEDDED_FALLBACK_HTML = """<!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Google Schema Studio (Embedded Mode)</title>
+  <title>Schema Illustrator Studio (Embedded Mode)</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8f9fa; color: #202124; padding: 30px; margin: 0; }
     .card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(60,64,67,0.15); max-width: 800px; margin: 0 auto; }
@@ -209,19 +209,17 @@ EMBEDDED_FALLBACK_HTML = """<!DOCTYPE html>
 </head>
 <body>
   <div class="card">
-    <h1>Google Schema Studio (Embedded UI)</h1>
+    <h1>Schema Illustrator Studio (Embedded UI)</h1>
     <p>Universal Schema Illustrator, Transpiler & Diagram Engine</p>
     <textarea id="src" placeholder="Paste SQL DDL, JSON Schema, TypeScript, or GraphQL here...">CREATE TABLE users (id UUID PRIMARY KEY, name VARCHAR(100));</textarea>
     <br/>
     <button onclick="parse()">Parse Schema</button>
     <button onclick="transpile()">Transpile to Pydantic</button>
     <button onclick="metrics()">Calculate Metrics</button>
-    <h3>Output:</h3>
-    <pre id="out">Results will appear here...</pre>
+    <pre id="out">Output will appear here...</pre>
   </div>
   <script>
     async function parse() {
-      const src = document.getElementById('src').value;
       const res = await fetch('/api/parse', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({schema: src}) });
       document.getElementById('out').textContent = JSON.stringify(await res.json(), null, 2);
     }
@@ -249,7 +247,7 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 
 
 class StudioRequestHandler(BaseHTTPRequestHandler):
-    """Request handler for Google Schema Studio UI and REST APIs."""
+    """Request handler for Schema Illustrator Studio UI and REST APIs."""
 
     server_version = "SchemaStudioServer/0.1.0"
 
@@ -524,7 +522,7 @@ def start_server(
 
     url = f"http://{host}:{port}/"
     if not quiet:
-        print(f"🚀 Google Schema Studio UI Server running at: {url}")
+        print(f"🚀 Schema Illustrator Studio UI Server running at: {url}")
         print(f"   API Endpoints:")
         print(f"   - POST {url}api/parse")
         print(f"   - POST {url}api/transpile")
@@ -549,7 +547,7 @@ def run_standalone(host: str = "127.0.0.1", port: int = 8765, open_browser: bool
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\nStopping Google Schema Studio UI Server...")
+        print("\nStopping Schema Illustrator Studio UI Server...")
     finally:
         server.shutdown()
         server.server_close()

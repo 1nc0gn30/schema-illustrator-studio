@@ -1,7 +1,7 @@
 """Multi-OS Command-Line Interface for schema-illustrator-studio.
 
 Provides commands for schema parsing, transpilation, SVG/Mermaid ERD generation,
-schema metrics, sample templates, Google Material 3 Web UI server,
+schema metrics, sample templates, Web UI server (design influenced by Material 3),
 MCP server over stdio, system diagnostics, and internal self-tests.
 100% Python standard library only.
 """
@@ -97,7 +97,7 @@ class Theme:
 def print_banner(t: Theme) -> None:
     """Print the Studio CLI header banner."""
     banner = f"""{t.primary("╔═════════════════════════════════════════════════════════════════════╗")}
-{t.primary("║")}   {t.bold("✦ Google Material 3 Schema Studio & Multi-Format MCP Server ✦")}   {t.primary("║")}
+{t.primary("║")}   {t.bold("✦ Schema Illustrator Studio & Multi-Format MCP Server ✦")}        {t.primary("║")}
 {t.primary("║")}   {t.dim(f"Universal Schema Transpiler, ERD Engine & Protocol v{__version__:<15}")} {t.primary("║")}
 {t.primary("╚═════════════════════════════════════════════════════════════════════╝")}"""
     print(banner)
@@ -321,7 +321,7 @@ def cmd_serve(args: argparse.Namespace, t: Theme) -> int:
         port = int(args.port or 8765)
         open_browser = not args.no_open
 
-        print(f"{t.green('Starting Google Schema Studio Web UI...')}")
+        print(f"{t.green('Starting Schema Illustrator Studio Web UI...')}")
         run_standalone(host=host, port=port, open_browser=open_browser)
         return 0
     except Exception as e:
@@ -476,7 +476,7 @@ def build_parser() -> argparse.ArgumentParser:
     """Build and configure the main argument parser."""
     parser = argparse.ArgumentParser(
         prog="schema-illustrator-studio",
-        description=f"Google Material 3 Schema Studio CLI v{__version__} - {__description__}",
+        description=f"Schema Illustrator Studio CLI v{__version__} - {__description__}",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
@@ -549,7 +549,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_smp.add_argument("--no-color", action="store_true", help="Disable color formatting.")
 
     # 7. serve
-    p_srv = subparsers.add_parser("serve", aliases=["ui", "web"], help="Launch Google Material 3 Schema Studio Web UI.")
+    p_srv = subparsers.add_parser("serve", aliases=["ui", "web"], help="Launch Schema Illustrator Studio Web UI (design influenced by Material 3).")
     p_srv.add_argument("--host", default="127.0.0.1", help="Host interface to bind (default: 127.0.0.1).")
     p_srv.add_argument("-p", "--port", type=int, default=8765, help="Port to bind (default: 8765).")
     p_srv.add_argument("--no-open", action="store_true", help="Do not automatically open browser.")

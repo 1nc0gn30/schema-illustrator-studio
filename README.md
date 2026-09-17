@@ -5,9 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Zero Runtime Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20deps-brightgreen.svg)](pyproject.toml)
 [![MCP Server](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-purple.svg)](src/schema_illustrator_studio/mcp_server.py)
-[![Design: Google Material 3](https://img.shields.io/badge/Design-Google%20Material%203-4285F4.svg)](public/index.html)
+[![Design: Material 3 Influenced](https://img.shields.io/badge/Design-Material%203%20Tokens-4285F4.svg)](public/index.html)
 
-**Schema Illustrator Studio** is a pure-Python, zero-dependency universal schema visualization, transpilation, ERD generation, and quality metrics engine. It seamlessly converts between **JSON Schema**, **SQL DDL**, **TypeScript Interfaces**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and ships a **Google Material 3 Web Studio UI**.
+**Schema Illustrator Studio** is a pure-Python, zero-dependency universal schema visualization, transpilation, ERD generation, and quality metrics engine. It seamlessly converts between **JSON Schema**, **SQL DDL**, **TypeScript Interfaces**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and ships a **Web Studio UI (design influenced by Material 3)**.
 
 ---
 
@@ -40,7 +40,7 @@ flowchart TD
     subgraph Interfaces["⚡ Delivery Interfaces"]
         METRICS --> CLI["CLI Tool (`schema-illustrator`)"]
         METRICS --> MCP["MCP Server (Claude, Cursor, Cline)"]
-        SVG_OUT --> WEB["Google Schema Studio Web UI (ThreadingHTTPServer)"]
+        SVG_OUT --> WEB["Schema Studio Web UI (ThreadingHTTPServer)"]
         Output --> CLI
         Output --> MCP
         Output --> WEB
@@ -58,7 +58,7 @@ flowchart TD
 | **Multi-Target Transpiler** | 1-click conversion to TypeScript, Pydantic v2 (`BaseModel`, `Field`), PostgreSQL DDL, GraphQL SDL, or JSON Schema. |
 | **Interactive SVG ERD Engine** | Generate publication-ready SVG diagrams with table cards, primary key badges, foreign key references, and cubic Bezier connectors. |
 | **Quality & Complexity Metrics** | Calculate normalization score, circular dependencies, orphan entities, depth, fan-in/fan-out, and overall schema grade (A+ to F). |
-| **Google Material 3 Web UI** | Modern dual-pane web studio with live syntax tabs, draggable SVG canvas, zoom/pan controls, and transpiler drawer. |
+| **Material 3 Web UI** | Modern dual-pane web studio (design influenced by Material 3) with live syntax tabs, draggable SVG canvas, zoom/pan controls, and transpiler drawer. |
 | **Model Context Protocol (MCP)** | Native JSON-RPC 2.0 MCP server over stdio for Claude Desktop, Cursor, Cline, and Windsurf. |
 | **Cross-Platform** | Fully verified on Linux (Ubuntu/Debian/Parrot), macOS, Windows, and Termux/Android. |
 
@@ -77,7 +77,7 @@ cd schema-illustrator-studio
 pip install -e .
 ```
 
-### 1. Launch Google Schema Studio Web UI
+### 1. Launch Schema Studio Web UI
 
 ```bash
 # Starts local UI server at http://127.0.0.1:8765
@@ -191,7 +191,7 @@ commands:
   mermaid     Export schema as Mermaid erDiagram markdown syntax
   metrics     Analyze schema complexity, normalization score, and DAG depth
   samples     List or output built-in production schema templates
-  serve       Launch the Google Material 3 Schema Studio Web UI
+  serve       Launch the Schema Studio Web UI (design influenced by Material 3)
   mcp         Run the Model Context Protocol (MCP) server over stdio
   doctor      Display system environment and parser capability diagnostics
   test        Execute internal test suite

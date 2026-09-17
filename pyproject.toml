@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "schema-illustrator-studio"
 version = "0.1.0"
-description = "Universal schema visualization, transpilation, ERD generation, and quality metrics engine with Google Material 3 Studio UI and MCP server."
+description = "Universal schema visualization, transpilation, ERD generation, and quality metrics engine with Web Studio UI (design influenced by Material 3) and MCP server."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }

@@ -1,4 +1,4 @@
-"""Integration tests for Google Schema Studio UI Server and REST API."""
+"""Integration tests for Schema Illustrator Studio UI Server and REST API."""
 
 import json
 import socket
@@ -41,7 +41,7 @@ def test_get_root_ui(live_server):
     with urllib.request.urlopen(req) as resp:
         assert resp.status == 200
         content = resp.read().decode("utf-8")
-        assert "Google Schema Studio" in content or "<html" in content
+        assert "Schema Illustrator Studio" in content or "Schema Studio" in content or "<html" in content
 
 
 def test_get_samples_api(live_server):
