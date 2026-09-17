@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "schema-illustrator-studio"
+version = "0.1.0"
+description = "Universal schema visualization, transpilation, ERD generation, and quality metrics engine with Google Material 3 Studio UI and MCP server."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Schema Illustrator Studio Contributors" }
+]
+keywords = [
+    "schema",
+    "erd",
+    "diagram",
+    "visualization",
+    "sql",
+    "json-schema",
+    "typescript",
+    "graphql",
+    "pydantic",
+    "mcp",
+    "model-context-protocol",
+    "material-design"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Database",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[project.scripts]
+schema-illustrator-studio = "schema_illustrator_studio.cli:main"
+schema-illustrator = "schema_illustrator_studio.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/1nc0gn30/schema-illustrator-studio"
+Repository = "https://github.com/1nc0gn30/schema-illustrator-studio.git"
+Issues = "https://github.com/1nc0gn30/schema-illustrator-studio/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+schema_illustrator_studio = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v"
