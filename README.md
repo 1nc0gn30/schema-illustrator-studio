@@ -1,13 +1,14 @@
 # 🎨 Schema Illustrator Studio
 
 [![CI](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml)
+[![Live Web Studio](https://img.shields.io/badge/Live%20App-schemaillustrator.nullai.tech-D4AF37?style=flat&logo=netlify)](https://schemaillustrator.nullai.tech)
+[![Dual Monetization](https://img.shields.io/badge/Stripe%20%2B%20Solana-19%20USD%20Lifetime-success)](https://buy.stripe.com/7sI7sA8hM2X8eFG8ww)
 [![Python 3.9–3.13](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Zero Runtime Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20deps-brightgreen.svg)](pyproject.toml)
 [![MCP Server](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-purple.svg)](src/schema_illustrator_studio/mcp_server.py)
-[![Design: Material 3 Influenced](https://img.shields.io/badge/Design-Material%203%20Tokens-4285F4.svg)](public/index.html)
 
-**Schema Illustrator Studio** is a pure-Python, zero-dependency universal schema visualization, transpilation, ERD generation, and quality metrics engine. It seamlessly converts between **JSON Schema**, **SQL DDL**, **TypeScript Interfaces**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and ships a **Web Studio UI (design influenced by Material 3)**.
+**Schema Illustrator Studio** is a 100% in-browser sovereign schema visualization, transpilation, ERD generation, and quality metrics engine — running live at **[schemaillustrator.nullai.tech](https://schemaillustrator.nullai.tech)**. It seamlessly converts between **SQL DDL**, **JSON Schema**, **TypeScript Interfaces**, **Prisma Schemas**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and features dual **Stripe + Solana DePay** checkout rails ($19 founding lifetime tier).
 
 ---
 
@@ -61,6 +62,21 @@ flowchart TD
 | **Material 3 Web UI** | Modern dual-pane web studio (design influenced by Material 3) with live syntax tabs, draggable SVG canvas, zoom/pan controls, and transpiler drawer. |
 | **Model Context Protocol (MCP)** | Native JSON-RPC 2.0 MCP server over stdio for Claude Desktop, Cursor, Cline, and Windsurf. |
 | **Cross-Platform** | Fully verified on Linux (Ubuntu/Debian/Parrot), macOS, Windows, and Termux/Android. |
+
+---
+
+## ⚡ 100% In-Browser Sovereign Micro-SaaS & Dual Monetization
+
+`schema-illustrator-studio` executes **100% locally in the browser** without external API servers:
+- **Instant Client Utility**: Multi-dialect AST parser (SQL DDL, JSON Schema, TypeScript, Prisma, GraphQL), interactive SVG vector diagram engine, and relational complexity analyzer execute completely client-side.
+- **Dual Monetization Rails**: Glassmorphic sales banner ($19 founding lifetime vs $79 regular), dual Stripe + Solana DePay checkout rails, frosted glass output paywall blurs, and 1-click license unlocks (`?licensed=true`).
+- **Triple-Viewport Automated Verification**: Headless Chrome tests verify 0 console errors and 0px horizontal overflow across mobile (390px), tablet (820px), and desktop (1425px).
+
+| Viewport | Dimensions | Console Errors | Horizontal Overflow | Verification Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Mobile** | 390 × 844 | 0 | **0px** | ✅ PASS |
+| **Tablet** | 820 × 1180 | 0 | **0px** | ✅ PASS |
+| **Desktop** | 1425 × 900 | 0 | **0px** | ✅ PASS |
 
 ---
 
@@ -302,6 +318,7 @@ schema-illustrator test
 
 ---
 
-## 📄 License
+## 📄 License & Attribution
 
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
+This project is licensed under the **MIT License**.  
+Engineered by Neal Frazier ([@1nc0gn30](https://github.com/1nc0gn30)) • [Neal Frazier Tech](https://nealfrazier.tech) • [NullAI Platform](https://nullai.tech).
