@@ -161,7 +161,7 @@ def test_cors_options(live_server):
     req = urllib.request.Request(f"{live_server}/api/parse", method="OPTIONS")
     with urllib.request.urlopen(req) as resp:
         assert resp.status == 204
-        assert resp.headers.get("Access-Control-Allow-Origin") == "*"
+        assert resp.headers.get("Access-Control-Allow-Origin") == "http://127.0.0.1"
 
 
 def test_post_mock_api(live_server, sample_sql_schema):
