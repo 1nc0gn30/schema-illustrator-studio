@@ -1082,7 +1082,7 @@
       <div class="brand-logo">S</div>
       <div class="brand-title">
         Schema Illustrator Studio
-        <span id="header-pro-badge" class="badge-pill">v2.0 • 100% Client-Side</span>
+        <span id="licenseBadge" class="badge-pill">⚡ FREE TIER</span>
       </div>
     </div>
 
@@ -1406,11 +1406,13 @@
       function activateProState() {
         isProLicensed = true;
         localStorage.setItem('schema_illustrator_pro_licensed', 'true');
-        const badge = document.getElementById('header-pro-badge');
+        const badge = document.getElementById('licenseBadge') || document.getElementById('header-pro-badge');
         if (badge) {
           badge.textContent = '⭐ PRO ACTIVE';
           badge.classList.add('pro-active');
         }
+        const banner = document.querySelector('.sovereign-sales-banner');
+        if (banner) banner.style.display = 'none';
         const overlay = document.getElementById('paywallOverlay');
         if (overlay) overlay.classList.remove('visible');
         const codeView = document.getElementById('drawer-code-view');
