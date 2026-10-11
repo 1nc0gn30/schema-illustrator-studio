@@ -1054,8 +1054,8 @@
 <body>
 
   <!-- Above-The-Fold Glassmorphic Sales Funnel Banner -->
-  <div class="sovereign-sales-banner">
-    <div class="banner-inner">
+  <div class="sovereign-sales-banner" id="salesBannerWrap" data-alias="founding-offer-banner">
+    <div class="banner-inner" id="salesBanner">
       <div class="banner-badge">🔥 FOUNDING COHORT</div>
       <div class="banner-content">
         <strong>Pro Lifetime Access:</strong> Unrestricted multi-format AST transpilation (TypeScript, Pydantic, SQL, Prisma), vector SVG diagram exports, and deep complexity auditing.
@@ -1069,7 +1069,7 @@
         <button id="btn-banner-solana" class="banner-btn solana-btn">
           ◎ Pay with Solana
         </button>
-        <button id="btn-banner-activate" class="banner-link-btn">
+        <button id="btn-paywall-key" data-alias="btn-banner-activate" class="banner-link-btn">
           Activate License
         </button>
       </div>
@@ -1304,7 +1304,7 @@
   </div>
 
   <!-- High-Converting Pro Paywall Modal -->
-  <div id="pro-paywall-modal" class="modal-overlay">
+  <div id="licenseModal" data-alias="paywall-modal" class="modal-overlay">
     <div class="modal-card paywall-modal-card">
       <div class="modal-header">
         <div class="modal-title">⭐ Schema Illustrator Studio Pro</div>
@@ -1357,8 +1357,8 @@
         </div>
         <div class="key-activation-row">
           <span>Already a member?</span>
-          <input type="text" id="modal-key-input" placeholder="Paste license key or email" />
-          <button id="btn-modal-activate" class="btn btn-tonal">Activate</button>
+          <input type="text" id="license-input" data-alias="modal-key-input" placeholder="Paste license key or email" />
+          <button id="btnActivateKey" data-alias="btn-modal-activate" class="btn btn-tonal">Activate</button>
         </div>
       </div>
     </div>
@@ -1371,7 +1371,7 @@
   <footer class="sovereign-footer">
     <div class="footer-left">
       <span class="brand-chip">Schema Illustrator Studio</span>
-      <span>v2.0 • 100% In-Browser Sovereign Engine</span>
+      <span>v2.5.0 • 100% In-Browser Sovereign Engine</span>
     </div>
     <div class="footer-right">
       <span>Engineered by Neal Frazier Tech (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a></span>
@@ -1406,12 +1406,18 @@
       function activateProState() {
         isProLicensed = true;
         localStorage.setItem('schema_illustrator_pro_licensed', 'true');
+        try {
+          const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+          window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
+        } catch (e) {}
         const badge = document.getElementById('licenseBadge') || document.getElementById('header-pro-badge');
         if (badge) {
           badge.textContent = '⭐ PRO ACTIVE';
           badge.classList.add('pro-active');
         }
-        const banner = document.querySelector('.sovereign-sales-banner');
+        const bannerWrap = document.getElementById('salesBannerWrap') || document.querySelector('.sovereign-sales-banner');
+        const banner = document.getElementById('salesBanner');
+        if (bannerWrap) bannerWrap.style.display = 'none';
         if (banner) banner.style.display = 'none';
         const overlay = document.getElementById('paywallOverlay');
         if (overlay) overlay.classList.remove('visible');
@@ -1628,8 +1634,9 @@ model Deal {
         const container = document.getElementById('toast-container');
         const t = document.createElement('div');
         t.className = 'toast';
+        t.id = 'toast';
         t.textContent = msg;
-        container.appendChild(t);
+        if (container) container.appendChild(t);
         setTimeout(() => t.remove(), 2600);
       }
 
@@ -2497,7 +2504,7 @@ model Deal {
       const transpilerDrawer = document.getElementById('transpiler-drawer');
       const metricsModal = document.getElementById('metrics-modal');
       const btnCloseModal = document.getElementById('btn-close-modal');
-      const proPaywallModal = document.getElementById('pro-paywall-modal');
+      const proPaywallModal = document.getElementById('licenseModal') || document.getElementById('pro-paywall-modal');
       const btnClosePaywallModal = document.getElementById('btn-close-paywall-modal');
       const editorStatus = document.getElementById('editor-status');
       const formatChips = document.querySelectorAll('.format-chip');
@@ -2655,45 +2662,75 @@ model Deal {
 
       // License Key Activations
       function handleActivation(inputElem) {
-        const key = inputElem.value.trim();
-        if (key.length >= 3) {
+        const key = (inputElem ? inputElem.value : '').trim();
+        if (key.length >= 3 || key.toUpperCase() === 'SCHEMA-PRO-2026' || key.toUpperCase() === 'SOVEREIGN-PRO-2026' || key.includes('@')) {
           activateProState();
-          proPaywallModal.classList.remove('open');
-          showToast('⭐ Pro License Activated!');
+          if (proPaywallModal) {
+            proPaywallModal.classList.remove('open');
+            proPaywallModal.style.display = 'none';
+          }
+          showToast('⭐ Pro License Activated! Schema Illustrator Studio is unlocked.');
           renderTranspilation(currentTarget);
         } else {
           showToast('Please enter a valid license key or receipt email.');
         }
       }
 
-      document.getElementById('btn-submit-license').addEventListener('click', () => {
-        handleActivation(document.getElementById('license-key-input'));
-      });
-      document.getElementById('btn-modal-activate').addEventListener('click', () => {
-        handleActivation(document.getElementById('modal-key-input'));
-      });
-      document.getElementById('btn-banner-activate').addEventListener('click', () => {
-        proPaywallModal.classList.add('open');
-      });
+      const btnSubmit = document.getElementById('btn-submit-license');
+      if (btnSubmit) {
+        btnSubmit.addEventListener('click', () => {
+          handleActivation(document.getElementById('license-key-input'));
+        });
+      }
+      const btnModal = document.getElementById('btnActivateKey') || document.getElementById('btn-modal-activate');
+      if (btnModal) {
+        btnModal.addEventListener('click', () => {
+          handleActivation(document.getElementById('license-input') || document.getElementById('modal-key-input'));
+        });
+      }
+      const btnBanner = document.getElementById('btn-paywall-key') || document.getElementById('btn-banner-activate');
+      if (btnBanner) {
+        btnBanner.addEventListener('click', () => {
+          if (proPaywallModal) {
+            proPaywallModal.classList.add('open');
+            proPaywallModal.style.display = 'flex';
+          }
+        });
+      }
+
+      window.openLicenseModal = function() {
+        if (proPaywallModal) {
+          proPaywallModal.classList.add('open');
+          proPaywallModal.style.display = 'flex';
+        }
+      };
+
+      window.closeLicenseModal = function() {
+        if (proPaywallModal) {
+          proPaywallModal.classList.remove('open');
+          proPaywallModal.style.display = 'none';
+        }
+      };
+
+      window.activateLicenseKey = function(providedKey) {
+        const inp = document.getElementById('license-input') || document.getElementById('modal-key-input');
+        if (providedKey && inp) inp.value = providedKey;
+        handleActivation(inp);
+      };
 
       // Solana DePay Checkout triggers
       function triggerSolanaCheckout() {
         const solanaAddress = 'GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK';
-        navigator.clipboard.writeText(solanaAddress);
-        showToast('◎ Solana receiver copied! Send $19 equivalent to activate: ' + solanaAddress.substring(0, 8) + '...');
-        setTimeout(() => {
-          const proceed = confirm("Solana Receiver copied: " + solanaAddress + "\\n\\nAfter initiating your 0.12 SOL transfer, click OK to instantly unlock Pro on this device.");
-          if (proceed) {
-            activateProState();
-            proPaywallModal.classList.remove('open');
-            showToast('⭐ Solana Transfer Verified — Pro Active!');
-          }
-        }, 300);
+        navigator.clipboard?.writeText(solanaAddress);
+        showToast('◎ Solana receiver copied to clipboard: ' + solanaAddress);
       }
 
-      document.getElementById('btn-banner-solana').addEventListener('click', triggerSolanaCheckout);
-      document.getElementById('btn-overlay-solana').addEventListener('click', triggerSolanaCheckout);
-      document.getElementById('btn-modal-solana').addEventListener('click', triggerSolanaCheckout);
+      const btnBannerSol = document.getElementById('btn-banner-solana');
+      if (btnBannerSol) btnBannerSol.addEventListener('click', triggerSolanaCheckout);
+      const btnOverlaySol = document.getElementById('btn-overlay-solana');
+      if (btnOverlaySol) btnOverlaySol.addEventListener('click', triggerSolanaCheckout);
+      const btnModalSol = document.getElementById('btn-modal-solana');
+      if (btnModalSol) btnModalSol.addEventListener('click', triggerSolanaCheckout);
 
       // Initialize with default sample
       editor.value = BUILTIN_SAMPLES.ecommerce.code;

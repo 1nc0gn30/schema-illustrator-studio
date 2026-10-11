@@ -1,17 +1,24 @@
 {
   "name": "schema-illustrator-studio",
-  "version": "2.0.0",
+  "version": "2.5.0",
   "description": "Multi-Format Schema Parser, Visual Interactive SVG/Mermaid ERD Studio, Transpiler & Mock Data Synthesizer — Desktop Workstation",
+  "homepage": "https://schemaillustrator.nullai.tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1nc0gn30/schema-illustrator-studio.git"
+  },
   "main": "electron/main.cjs",
   "bin": {
     "schema-illustrator": "./bin/schema-illustrator.js",
     "schema-illustrator-studio": "./bin/schema-illustrator.js"
   },
   "scripts": {
-    "start": "python3 -m schema_illustrator_studio.cli serve --port 8765 --no-open",
+    "start": "python3 -m schema_illustrator_studio.cli serve --port 8102 --no-open",
+    "serve": "python3 -m http.server 8102 --directory public",
     "electron": "electron .",
     "app": "electron .",
-    "test": "pytest tests/"
+    "test": "pytest tests/",
+    "test:ui": "python3 scripts/verify_ui.py"
   },
   "keywords": [
     "schema",
@@ -27,7 +34,7 @@
     "electron",
     "zoth"
   ],
-  "author": "NullAI Tech / Zoth Team",
+  "author": "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
   "license": "MIT",
   "devDependencies": {
     "electron": "^34.5.8"
