@@ -2,13 +2,14 @@
 
 [![CI](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml)
 [![Live Web Studio](https://img.shields.io/badge/Live%20App-schemaillustrator.nullai.tech-D4AF37?style=flat&logo=netlify)](https://schemaillustrator.nullai.tech)
-[![Dual Monetization](https://img.shields.io/badge/Stripe%20%2B%20Solana-19%20USD%20Lifetime-success)](https://buy.stripe.com/7sI7sA8hM2X8eFG8ww)
+[![Dual Monetization](https://img.shields.io/badge/Stripe%20%2B%20Solana-19%20USD%20Lifetime-success)](https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L)
+[![Zoth Studio Ready](https://img.shields.io/badge/Zoth%20Studio-God%20Mode%20Active-D4AF37?style=flat)](https://zoth.nullai.tech/tools/schema-illustrator-studio)
 [![Python 3.9–3.13](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Zero Runtime Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20deps-brightgreen.svg)](pyproject.toml)
 [![MCP Server](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-purple.svg)](src/schema_illustrator_studio/mcp_server.py)
 
-**Schema Illustrator Studio** is a 100% in-browser sovereign schema visualization, transpilation, ERD generation, and quality metrics engine — running live at **[schemaillustrator.nullai.tech](https://schemaillustrator.nullai.tech)**. It seamlessly converts between **SQL DDL**, **JSON Schema**, **TypeScript Interfaces**, **Prisma Schemas**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and features dual **Stripe + Solana DePay** checkout rails ($19 founding lifetime tier).
+**Schema Illustrator Studio** is a 100% in-browser sovereign schema visualization, transpilation, ERD generation, and quality metrics engine — running live at **[schemaillustrator.nullai.tech](https://schemaillustrator.nullai.tech)** and inside Zoth Studio at **[zoth.nullai.tech/tools/schema-illustrator-studio](https://zoth.nullai.tech/tools/schema-illustrator-studio)**. It seamlessly converts between **SQL DDL**, **JSON Schema**, **TypeScript Interfaces**, **Prisma Schemas**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and features dual **Stripe + Solana DePay** (`GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`) checkout rails ($19 founding lifetime tier). Attributed to Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30)) • NullAI Platform.
 
 ---
 
