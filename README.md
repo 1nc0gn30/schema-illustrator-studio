@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="assets/hero-banner.svg" alt="Schema Illustrator Studio — Sovereign Architecture Banner" width="100%" />
+</div>
+
+<br />
+
 # 🎨 Schema Illustrator Studio
 
 [![CI](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml)
