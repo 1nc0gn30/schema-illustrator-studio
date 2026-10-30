@@ -284,7 +284,7 @@ class StudioRequestHandler(BaseHTTPRequestHandler):
             self._send_json(SAMPLE_SCHEMAS)
             return
 
-        if path in ("/api/stats", "/api/diagnostics", "/api/health"):
+        if path in ("/health", "/api/stats", "/api/diagnostics", "/api/health"):
             stats_data = {
                 "status": "healthy",
                 "version": "0.1.0",

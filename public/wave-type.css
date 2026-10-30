@@ -1,0 +1,158 @@
+/* ==========================================================================
+   Wave Typography: Schema Illustrator Studio
+   Visual Anchor: Precision Architectural Workbench
+   Typography Polish: Readable measure, tabular figures, and refined tracking
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Readable Measure on the Main Work Surface & Text Blocks
+   Ensures optimal character length (60-80ch) for code and explanatory copy
+   -------------------------------------------------------------------------- */
+
+/* Code and schema work surfaces */
+.code-textarea {
+  max-width: 80ch;
+  line-height: 1.65;
+  tab-size: 2;
+  -moz-tab-size: 2;
+}
+
+.drawer-content {
+  max-width: 90ch;
+  line-height: 1.65;
+  tab-size: 2;
+  -moz-tab-size: 2;
+}
+
+/* Banner content above workspace */
+.banner-content {
+  max-width: 68ch;
+  line-height: 1.5;
+}
+
+/* Paywall lock overlay explanation */
+.paywall-lock-card p {
+  max-width: 48ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.55;
+}
+
+/* Pro benefit items in modal */
+.benefit-item p {
+  max-width: 48ch;
+  line-height: 1.5;
+}
+
+/* Complexity telemetry detail output */
+#metrics-details {
+  max-width: 64ch;
+  line-height: 1.6;
+}
+
+/* Standard paragraph measure */
+p {
+  max-width: 72ch;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tabular Numbers on Existing Scores and Prices
+   Equal-width numeral alignment for flicker-free metrics and stable pricing
+   -------------------------------------------------------------------------- */
+
+/* Numeric scores and metric telemetry */
+.metric-card-val {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: -0.02em;
+}
+
+.metric-badge {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: -0.01em;
+}
+
+#pill-entities,
+#pill-fields,
+#pill-relations,
+#pill-grade,
+#m-entities,
+#m-fields,
+#m-relations,
+#m-depth,
+#m-complexity,
+#m-grade {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+/* Price figures across sales surfaces */
+.banner-price,
+.banner-price del,
+.banner-price strong,
+.paywall-price-tag,
+.paywall-price-tag .old-price,
+.paywall-price-tag .new-price,
+.old-price,
+.new-price,
+.pricing-value,
+.pricing-value del,
+.pricing-value strong {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: -0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   3. Slightly Clearer Heading Tracking
+   Tighter display tracking on Space Grotesk headings, open tracking on eyebrows
+   -------------------------------------------------------------------------- */
+
+/* Primary brand and app bar titles */
+.brand-title {
+  letter-spacing: -0.02em;
+}
+
+.brand-logo {
+  letter-spacing: -0.02em;
+}
+
+/* Section, dialog, and paywall headings */
+.modal-title {
+  letter-spacing: -0.015em;
+}
+
+h3,
+.paywall-lock-card h3 {
+  letter-spacing: -0.015em;
+}
+
+.drawer-toggle-btn {
+  letter-spacing: -0.01em;
+}
+
+.benefit-item strong {
+  letter-spacing: -0.01em;
+}
+
+/* Uppercase eyebrow badges and telemetry labels */
+.banner-badge {
+  letter-spacing: 0.08em;
+}
+
+.badge-pill {
+  letter-spacing: 0.04em;
+}
+
+.metric-card-label {
+  letter-spacing: 0.06em;
+}
+
+.pricing-label {
+  letter-spacing: 0.03em;
+}
+
+.brand-chip {
+  letter-spacing: 0.04em;
+}

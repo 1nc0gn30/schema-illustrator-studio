@@ -8,14 +8,84 @@
 
 [![CI](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/schema-illustrator-studio/actions/workflows/ci.yml)
 [![Live Web Studio](https://img.shields.io/badge/Live%20App-schemaillustrator.nullai.tech-D4AF37?style=flat&logo=netlify)](https://schemaillustrator.nullai.tech)
-[![Dual Monetization](https://img.shields.io/badge/Stripe%20%2B%20Solana-19%20USD%20Lifetime-success)](https://buy.stripe.com/4gMfZg9AheOsdhKbcAfw40L)
+[![Access: 100% Free](https://img.shields.io/badge/Access-100%25%20Free%20%26%20Open-10B981?style=flat)](https://zoth.nullai.tech/tools/schema-illustrator-studio)
+[![Buy Us a Coffee](https://img.shields.io/badge/☕%20Buy%20Us%20a%20Coffee-Stripe-D4AF37?style=flat)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
+[![Solana Tip](https://img.shields.io/badge/Solana-Tip%20Wallet-14F195?style=flat&logo=solana)](https://zoth.nullai.tech/tools/schema-illustrator-studio)
 [![Zoth Studio Ready](https://img.shields.io/badge/Zoth%20Studio-God%20Mode%20Active-D4AF37?style=flat)](https://zoth.nullai.tech/tools/schema-illustrator-studio)
 [![Python 3.9–3.13](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Zero Runtime Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20deps-brightgreen.svg)](pyproject.toml)
 [![MCP Server](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-purple.svg)](src/schema_illustrator_studio/mcp_server.py)
 
-**Schema Illustrator Studio** is a 100% in-browser sovereign schema visualization, transpilation, ERD generation, and quality metrics engine — running live at **[schemaillustrator.nullai.tech](https://schemaillustrator.nullai.tech)** and inside Zoth Studio at **[zoth.nullai.tech/tools/schema-illustrator-studio](https://zoth.nullai.tech/tools/schema-illustrator-studio)**. It seamlessly converts between **SQL DDL**, **JSON Schema**, **TypeScript Interfaces**, **Prisma Schemas**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and features dual **Stripe + Solana DePay** (`GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`) checkout rails ($19 founding lifetime tier). Attributed to Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30)) • NullAI Platform.
+**Schema Illustrator Studio** is a 100% in-browser sovereign schema visualization, transpilation, ERD generation, and quality metrics engine — running live at **[schemaillustrator.nullai.tech](https://schemaillustrator.nullai.tech)** and inside Zoth Studio at **[zoth.nullai.tech/tools/schema-illustrator-studio](https://zoth.nullai.tech/tools/schema-illustrator-studio)**. It seamlessly converts between **SQL DDL**, **JSON Schema**, **TypeScript Interfaces**, **Prisma Schemas**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and offers 100% free open access with optional **Buy Us a Coffee (Stripe)** and **Solana Tip** (`GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`) support. Attributed to Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30)) • NullAI Platform.
+
+---
+
+## 📖 What It Does
+
+**Schema Illustrator Studio** transforms complex database definitions and data models into visual, interactive diagrams and production-ready code:
+
+- **Universal Multi-Format Ingestion**: Ingests SQL DDL (Postgres, MySQL, SQLite), JSON Schema / OpenAPI 3.x, TypeScript interfaces, and GraphQL SDL into a normalized `SchemaAST`.
+- **Interactive SVG & Mermaid ERD**: Renders fluid vector Entity-Relationship Diagrams with cubic Bezier relationship lines, entity cards, primary/foreign key flags, and auto-layout.
+- **Bi-Directional Schema Transpiler**: Converts ingested models into TypeScript types, Python Pydantic v2 models, PostgreSQL DDL, GraphQL SDL, and JSON Schema Draft 2020-12.
+- **Normalization & Complexity Telemetry**: Evaluates schema health, primary key coverage, relationship depth, cyclomatic graph complexity, and calculates 3NF normalization compliance.
+- **Zero Cloud Egress**: All parsing, AST transformation, and diagram generation executes entirely in-browser or locally via Python standard library.
+
+---
+
+## ⚙️ How It Works
+
+1. **Parser Engine (`src/schema_illustrator_studio/parsers/`)**: Dedicated grammar parsers extract entities, attributes, primary keys, nullability, defaults, and foreign-key constraints into a typed `SchemaAST`.
+2. **ERD Visualizer (`diagram_engine.py`)**: Computes 2D bounding boxes and cubic Bezier routing coordinates for entity relationships, rendering responsive SVG canvases with pan and zoom.
+3. **Transpilation Pipeline (`transpilers/`)**: Traverses the `SchemaAST` to emit idiomatic target syntax for Pydantic v2, TypeScript + Zod, PostgreSQL, and GraphQL.
+4. **Metrics Evaluator (`metrics.py`)**: Runs graph algorithms across the schema entity relationship graph to detect cycles, unindexed foreign keys, and missing primary keys.
+
+---
+
+## 💻 ZothOS CLI & Subcommands
+
+Schema Illustrator is available system-wide via `/usr/local/bin/schema-illustrator` and `schema-illustrator-studio`:
+
+```bash
+# Telemetry and status
+schema-illustrator --version
+schema-illustrator --status
+schema-illustrator --json
+schema-illustrator doctor
+
+# Transpile schema to target language
+schema-illustrator transpile schema.sql --target pydantic
+schema-illustrator transpile schema.json --target typescript
+
+# Export Mermaid ERD syntax
+schema-illustrator mermaid schema.sql
+
+# Compute normalization metrics
+schema-illustrator metrics schema.sql --json
+
+# Run relational mock data generator
+schema-illustrator mock schema.sql --count 10
+
+# Launch standalone workstation on port 8099
+schema-illustrator serve --port 8099
+```
+
+---
+
+## 🤖 MCP Server Setup
+
+Add Schema Illustrator to your Claude Desktop or Cursor MCP config:
+
+```json
+{
+  "mcpServers": {
+    "schema-illustrator": {
+      "command": "schema-illustrator",
+      "args": ["mcp"]
+    }
+  }
+}
+```
 
 ---
 
@@ -76,7 +146,7 @@ flowchart TD
 
 `schema-illustrator-studio` executes **100% locally in the browser** without external API servers:
 - **Instant Client Utility**: Multi-dialect AST parser (SQL DDL, JSON Schema, TypeScript, Prisma, GraphQL), interactive SVG vector diagram engine, and relational complexity analyzer execute completely client-side.
-- **Dual Monetization Rails**: Glassmorphic sales banner ($19 founding lifetime vs $79 regular), dual Stripe + Solana DePay checkout rails, frosted glass output paywall blurs, and 1-click license unlocks (`?licensed=true`).
+- **Dual Monetization Rails**: Glassmorphic sales banner ($19 founding lifetime vs $79 regular), dual Stripe + Solana Tip checkout rails, frosted glass output paywall blurs, and 1-click license unlocks (`?licensed=true`).
 - **Triple-Viewport Automated Verification**: Headless Chrome tests verify 0 console errors and 0px horizontal overflow across mobile (390px), tablet (820px), and desktop (1425px).
 
 | Viewport | Dimensions | Console Errors | Horizontal Overflow | Verification Status |

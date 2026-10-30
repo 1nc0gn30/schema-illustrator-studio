@@ -1,0 +1,304 @@
+/* ==========================================================================
+   Wave States: Schema Illustrator Studio
+   Visual Anchor: Precision Architectural Workbench
+   Refined :focus-visible, hover, empty and error presentation, and reduced-motion
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Visible Focus States (:focus-visible)
+   High-contrast, accessible focus indicators echoing the gold architectural palette
+   -------------------------------------------------------------------------- */
+
+/* Top Sales Banner Interactive Elements */
+.banner-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.stripe-btn:focus-visible {
+  outline: 2px solid #F5E6AB;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.solana-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+.banner-link-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+  color: var(--primary);
+}
+
+/* App Bar & Toolbar Actions */
+.sample-select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid #F5E6AB;
+  outline-offset: 2px;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+}
+
+.btn-tonal:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.btn-outline:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+.btn-icon:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+/* Editor Format Chips & Controls */
+.format-chip:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  color: var(--text-primary);
+}
+
+.code-textarea:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1.5px var(--primary), inset 0 0 16px rgba(212, 175, 55, 0.08);
+}
+
+/* Viewport & Drawer Interactive Controls */
+.drawer-toggle-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.35);
+}
+
+.drawer-tab:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+/* License & Activation Inputs */
+.paywall-key-prompt input:focus-visible,
+#license-key-input:focus-visible,
+.key-activation-row input:focus-visible,
+#license-input:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Sovereign Footer Links */
+.sovereign-footer a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Refined Hover States (:hover)
+   Consistent micro-elevation, border illumination, and responsive feedback
+   -------------------------------------------------------------------------- */
+
+.stripe-btn:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+}
+
+.solana-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
+}
+
+.banner-link-btn:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+.sample-select:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  background: var(--surface-hover);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+}
+
+.btn-tonal:hover {
+  background: rgba(212, 175, 55, 0.22);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-outline:hover {
+  background: var(--surface-hover);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-icon:hover {
+  background: var(--surface-hover);
+  border-color: rgba(212, 175, 55, 0.4);
+  color: var(--text-primary);
+}
+
+.control-card .btn-icon:hover {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--primary);
+}
+
+.format-chip:not(.active):hover {
+  color: var(--text-primary);
+  border-color: rgba(212, 175, 55, 0.45);
+  background: var(--surface-hover);
+}
+
+.drawer-tab:not(.active):hover {
+  color: var(--text-primary);
+  border-color: rgba(212, 175, 55, 0.45);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.drawer-toggle-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
+}
+
+.paywall-key-prompt input:hover,
+#license-key-input:hover,
+.key-activation-row input:hover,
+#license-input:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+.metric-card-box:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.benefit-item:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.sovereign-footer a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   3. Empty State Presentation
+   Clean placeholder, empty container guidance, and muted cues
+   -------------------------------------------------------------------------- */
+
+.code-textarea:placeholder-shown {
+  font-family: var(--font-mono);
+  color: var(--text-disabled);
+}
+
+.paywall-key-prompt input:placeholder-shown,
+#license-key-input:placeholder-shown,
+.key-activation-row input:placeholder-shown,
+#license-input:placeholder-shown {
+  color: var(--text-disabled);
+}
+
+#metrics-details:empty {
+  display: none;
+}
+
+.toast:empty {
+  display: none;
+}
+
+#viewport-group:empty {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Error State Presentation
+   High-contrast validation, invalid input boundaries, and error cues
+   -------------------------------------------------------------------------- */
+
+/* Form validation states for license and editor inputs */
+.paywall-key-prompt input:invalid,
+#license-key-input:invalid,
+.key-activation-row input:invalid,
+#license-input:invalid,
+.code-textarea:invalid {
+  border-color: #EF4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+}
+
+.paywall-key-prompt input:user-invalid,
+#license-key-input:user-invalid,
+.key-activation-row input:user-invalid,
+#license-input:user-invalid,
+.code-textarea:user-invalid {
+  border-color: #EF4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+}
+
+/* Toast alert styling */
+.toast {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   5. Accessibility: Respect prefers-reduced-motion
+   Full override preventing disorientation and respecting system preferences
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .banner-btn,
+  .stripe-btn,
+  .solana-btn,
+  .btn,
+  .btn-primary,
+  .btn-tonal,
+  .btn-outline,
+  .btn-icon,
+  .drawer-toggle-btn,
+  .drawer-tab,
+  .format-chip,
+  .modal-card,
+  .toast,
+  .transpiler-drawer {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

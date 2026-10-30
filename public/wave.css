@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Wave Polish: Schema Illustrator Studio
+   Visual Anchor: Precision Architectural Workbench
+   Refined input & output hierarchy, visible focus rings, purposeful result motion
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Schema Input Surface: Hierarchy, Visual Focus, and Typography
+   -------------------------------------------------------------------------- */
+.editor-pane {
+  border-right: 1px solid var(--surface-border);
+  background: var(--surface-card);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editor-header {
+  background: rgba(18, 18, 26, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--surface-border);
+  padding: 10px 14px;
+}
+
+.format-chips {
+  gap: 6px;
+}
+
+.format-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--surface-border);
+  background: var(--surface-bg);
+  color: var(--text-secondary);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.format-chip:hover {
+  color: var(--text-primary);
+  border-color: rgba(212, 175, 55, 0.4);
+  background: var(--surface-hover);
+}
+
+.format-chip:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  color: var(--text-primary);
+}
+
+.format-chip.active {
+  background: rgba(212, 175, 55, 0.16);
+  border-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.18);
+}
+
+.editor-body {
+  position: relative;
+  background: var(--code-bg);
+}
+
+.code-textarea {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--code-bg);
+  padding: 16px;
+  caret-color: var(--primary);
+  transition: box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Clear, luminous focus indicator on the schema editor */
+.code-textarea:focus,
+.code-textarea:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1.5px rgba(212, 175, 55, 0.7), inset 0 0 16px rgba(212, 175, 55, 0.06);
+}
+
+.code-textarea::placeholder {
+  color: var(--text-disabled);
+  opacity: 0.85;
+}
+
+.editor-footer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 9px 14px;
+  background: rgba(18, 18, 26, 0.95);
+  border-top: 1px solid var(--surface-border);
+  color: var(--text-secondary);
+}
+
+#editor-status {
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 10.5px;
+}
+
+/* Toolbar controls visible focus */
+.sample-select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-color: var(--primary);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid #F5E6AB;
+  outline-offset: 2px;
+}
+
+.btn-tonal:focus-visible,
+.btn-outline:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.btn-icon:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Diagram Surface: Refined Floating Overlays & Interaction
+   -------------------------------------------------------------------------- */
+.metrics-pill-bar {
+  background: rgba(18, 18, 26, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  padding: 6px 14px;
+}
+
+.metric-item span:first-child {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.metric-badge {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--primary);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.metric-divider {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.control-card {
+  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.drawer-toggle-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer-toggle-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Output Surface: Transpiler Drawer Hierarchy & Code View
+   -------------------------------------------------------------------------- */
+.drawer-tab {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 5px 12px;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drawer-tab:hover {
+  color: var(--text-primary);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.drawer-tab:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.drawer-tab.active {
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.18);
+}
+
+.drawer-content {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   4. Purposeful Result Entrance Motion (Tokens from Motion Choreography)
+   Short transform & opacity entrance when diagram results and code render
+   -------------------------------------------------------------------------- */
+@keyframes waveResultAppear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes waveOutputSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SVG Entity cards & relationship lines fade in cleanly on generation */
+.entity-card {
+  animation: waveResultAppear 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.relationships-layer {
+  animation: waveResultAppear 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Transpiled code output slides up smoothly when drawer opens */
+.transpiler-drawer.open .drawer-content {
+  animation: waveOutputSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* --------------------------------------------------------------------------
+   5. Accessibility: Respect prefers-reduced-motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .entity-card,
+  .relationships-layer,
+  .transpiler-drawer.open .drawer-content,
+  .transpiler-drawer,
+  .drawer-toggle-btn,
+  .code-textarea,
+  .format-chip,
+  .drawer-tab,
+  .btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
