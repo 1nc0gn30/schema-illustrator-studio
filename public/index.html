@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Schema Illustrator Studio | Universal ERD Visualizer & Multi-Language Schema Transpiler</title>
   <meta name="description" content="100% in-browser visual database ERD studio and schema transpiler. Convert SQL DDL, JSON Schema, TypeScript, Prisma, and GraphQL SDL into interactive vector diagrams and multi-dialect code." />
-  <meta name="author" content="Neal Frazier (@1nc0gn30) • Neal Frazier Tech" />
+  <meta name="author" content="1nc0gn30 (@1nc0gn30) • 1nc0gn30 • NullAI" />
   <link rel="icon" type="image/png" href="favicon.ico" />
 
   <!-- OpenGraph / Social Meta Tags -->
@@ -35,8 +35,8 @@
         "description": "100% in-browser visual database ERD studio, complexity analyzer, and multi-dialect schema transpiler (TypeScript, Pydantic, PostgreSQL, Prisma, GraphQL).",
         "creator": {
           "@type": "Person",
-          "name": "Neal Frazier",
-          "url": "https://nealfrazier.tech"
+          "name": "1nc0gn30",
+          "url": "https://nullai.tech"
         },
         "offers": {
           "@type": "Offer",
@@ -45,7 +45,7 @@
           "availability": "https://schema.org/InStock",
           "seller": {
             "@type": "Organization",
-            "name": "Neal Frazier Tech"
+            "name": "1nc0gn30 • NullAI"
           }
         }
       },
@@ -70,10 +70,10 @@
           },
           {
             "@type": "Question",
-            "name": "What payment rails are accepted for founding lifetime licenses?",
+            "name": "What payment rails are accepted for open-access sovereign licenses?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We accept instant payments via universal credit cards, Apple Pay, and Google Pay through Stripe (Free (100% Open Access)), as well as decentralized Web3 on-chain payments via DePay on Solana."
+              "text": "We accept instant payments via universal credit cards, Apple Pay, and Google Pay through Stripe (Free (100% Open Access)), as well as decentralized Web3 on-chain payments via Solana Tip on Solana."
             }
           }
         ]
@@ -149,123 +149,6 @@
       flex-direction: column;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-    }
-
-    /* Above-The-Fold Glassmorphic Sales Banner */
-    .sovereign-sales-banner {
-      background: linear-gradient(90deg, rgba(212, 175, 55, 0.12) 0%, rgba(18, 18, 26, 0.95) 50%, rgba(212, 175, 55, 0.12) 100%);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-      padding: 8px 16px;
-      font-size: 13px;
-      position: relative;
-      z-index: 150;
-      backdrop-filter: blur(12px);
-    }
-
-    .banner-inner {
-      max-width: 1500px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .banner-badge {
-      background: linear-gradient(135deg, #D4AF37, #B8860B);
-      color: #08080B;
-      font-weight: 700;
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: var(--radius-full);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .banner-content {
-      color: var(--text-primary);
-      flex: 1;
-      min-width: 260px;
-    }
-
-    .banner-content strong {
-      color: var(--primary);
-    }
-
-    .banner-price {
-      margin-left: 8px;
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      padding: 2px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    .banner-price del {
-      color: var(--text-secondary);
-      margin-right: 4px;
-    }
-
-    .banner-price strong {
-      color: #F5E6AB;
-    }
-
-    .banner-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .banner-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s ease;
-      min-height: 32px;
-    }
-
-    .stripe-btn {
-      background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-      color: #08080B;
-    }
-
-    .stripe-btn:hover {
-      filter: brightness(1.1);
-      transform: translateY(-1px);
-    }
-
-    .solana-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-primary);
-      border: 1px solid var(--surface-border);
-    }
-
-    .solana-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .banner-link-btn {
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 12px;
-      cursor: pointer;
-      text-decoration: underline;
-      padding: 4px 6px;
-    }
-
-    .banner-link-btn:hover {
-      color: var(--primary);
     }
 
     /* App Header */
@@ -665,8 +548,8 @@
       font-weight: 600;
     }
 
-    /* Frosted Paywall Blur Overlay */
-    .code-paywall-wrap {
+    /* Code Drawer View */
+    .code-view-wrap {
       flex: 1;
       position: relative;
       overflow: hidden;
@@ -684,96 +567,6 @@
       background: var(--code-bg);
       color: var(--text-primary);
       white-space: pre;
-      transition: filter 0.3s;
-    }
-
-    .drawer-content.locked {
-      filter: none;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .paywall-lock-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(8, 8, 11, 0.7);
-      backdrop-filter: none;
-      z-index: 10;
-    }
-
-    .paywall-lock-overlay.visible {
-      display: flex;
-    }
-
-    .paywall-lock-card {
-      background: rgba(18, 18, 26, 0.95);
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      border-radius: var(--radius-md);
-      padding: 20px 24px;
-      max-width: 440px;
-      text-align: center;
-      box-shadow: 0 0 24px rgba(212, 175, 55, 0.2);
-    }
-
-    .paywall-lock-card h3 {
-      font-family: var(--font-display);
-      font-size: 17px;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .paywall-lock-card p {
-      font-size: 12.5px;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
-      line-height: 1.4;
-    }
-
-    .paywall-price-tag {
-      font-size: 14px;
-      margin-bottom: 14px;
-    }
-
-    .paywall-price-tag .old-price {
-      text-decoration: line-through;
-      color: var(--text-disabled);
-      margin-right: 6px;
-    }
-
-    .paywall-price-tag .new-price {
-      color: #F5E6AB;
-      font-weight: 700;
-    }
-
-    .paywall-ctas {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-
-    .paywall-key-prompt {
-      display: flex;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    .paywall-key-prompt input {
-      flex: 1;
-      background: var(--surface-bg);
-      border: 1px solid var(--surface-border);
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      color: var(--text-primary);
-      font-size: 12px;
-      outline: none;
     }
 
     /* Modal Windows */
@@ -865,92 +658,6 @@
       font-size: 24px;
       font-weight: 700;
       color: var(--primary);
-    }
-
-    /* Pro Benefits Grid in Modal */
-    .pro-benefits-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .benefit-item {
-      background: var(--surface-bg);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-sm);
-      padding: 12px;
-      display: flex;
-      gap: 10px;
-    }
-
-    .benefit-icon {
-      font-size: 18px;
-    }
-
-    .benefit-item strong {
-      display: block;
-      font-size: 13px;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-
-    .benefit-item p {
-      font-size: 11.5px;
-      color: var(--text-secondary);
-      line-height: 1.4;
-    }
-
-    .paywall-pricing-banner {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(18, 18, 26, 0.9) 100%);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-    }
-
-    .pricing-label {
-      font-size: 11.5px;
-      color: var(--text-secondary);
-    }
-
-    .pricing-value {
-      font-size: 16px;
-      color: var(--primary);
-    }
-
-    .pricing-value del {
-      color: var(--text-disabled);
-      font-size: 13px;
-    }
-
-    .pricing-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .key-activation-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    .key-activation-row input {
-      flex: 1;
-      background: var(--surface-bg);
-      border: 1px solid var(--surface-border);
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      color: var(--text-primary);
-      font-size: 12px;
-      outline: none;
     }
 
     /* Sovereign Footer */
@@ -1246,7 +953,7 @@
         </div>
 
         <!-- Code Drawer View (100% Unlocked) -->
-        <div class="code-view-wrap" id="codePaywallWrap">
+        <div class="code-view-wrap" id="cosolanaTipwallWrap">
           <div id="drawer-code-view" class="drawer-content">// Transpiled code will appear here...</div>
         </div>
 
@@ -1296,67 +1003,6 @@
     </div>
   </div>
 
-  <!-- High-Converting Pro Paywall Modal -->
-  <div id="licenseModal" data-alias="paywall-modal" class="modal-overlay">
-    <div class="modal-card paywall-modal-card">
-      <div class="modal-header">
-        <div class="modal-title">⭐ Schema Illustrator Studio Pro</div>
-        <button id="btn-close-paywall-modal" class="btn-icon">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="pro-benefits-grid">
-          <div class="benefit-item">
-            <span class="benefit-icon">⚡</span>
-            <div>
-              <strong>Multi-Language Transpilation</strong>
-              <p>Export clean TypeScript interfaces, Pydantic v2 models, Prisma schemas, and PostgreSQL DDL.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-icon">❖</span>
-            <div>
-              <strong>100% Client-Side Privacy</strong>
-              <p>Zero cloud server egress. Your proprietary schemas never leave your device memory.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-icon">◈</span>
-            <div>
-              <strong>Vector SVG Architecture Exports</strong>
-              <p>Download infinite-resolution SVG entity relationship diagrams for docs, whitepapers, and PRs.</p>
-            </div>
-          </div>
-          <div class="benefit-item">
-            <span class="benefit-icon">◈</span>
-            <div>
-              <strong>Complexity & Cycle Telemetry</strong>
-              <p>Instant circular dependency detection, normalization grading, and relationship depth analysis.</p>
-            </div>
-          </div>
-        </div>
-        <div class="paywall-pricing-banner">
-          <div>
-            <div class="pricing-label">Founding Member Special</div>
-            <div class="pricing-value"><del>Free (100% Open Access)</del> <strong>Free (100% Open Access)</strong> / Lifetime</div>
-          </div>
-          <div class="pricing-actions">
-            <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="btn btn-primary">
-              Checkout with Card (Free (100% Open Access))
-            </a>
-            <button id="btn-modal-solana" class="btn btn-outline">
-              ◎ Solana Pay
-            </button>
-          </div>
-        </div>
-        <div class="key-activation-row">
-          <span>Already a member?</span>
-          <input type="text" id="license-input" data-alias="modal-key-input" placeholder="Paste license key or email" />
-          <button id="btnActivateKey" data-alias="btn-modal-activate" class="btn btn-tonal">Activate</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
@@ -1367,7 +1013,7 @@
       <span>v2.5.0 • 100% In-Browser Sovereign Engine</span>
     </div>
     <div class="footer-right">
-      <span>Engineered by Neal Frazier Tech (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a></span>
+      <span>Engineered by 1nc0gn30 • NullAI (<a href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a></span>
     </div>
   </footer>
 
@@ -2048,7 +1694,7 @@ model Deal {
         if (entities.length === 0) return '// No entities parsed to transpile.';
 
         if (target === 'typescript') {
-          let out = `/**\n * Autogenerated TypeScript Interfaces\n * Generator: Schema Illustrator Studio (Neal Frazier Tech • NullAI)\n */\n\n`;
+          let out = `/**\n * Autogenerated TypeScript Interfaces\n * Generator: Schema Illustrator Studio (1nc0gn30 • NullAI • NullAI)\n */\n\n`;
           for (const ent of entities) {
             out += `export interface ${capitalize(ent.name)} {\n`;
             for (const f of ent.fields || []) {
@@ -2063,7 +1709,7 @@ model Deal {
         }
 
         if (target === 'pydantic') {
-          let out = `"""\nAutogenerated Pydantic v2 Models\nGenerator: Schema Illustrator Studio (Neal Frazier Tech • NullAI)\n"""\nfrom __future__ import annotations\nfrom typing import Optional, List\nfrom uuid import UUID\nfrom datetime import datetime\nfrom pydantic import BaseModel, Field\n\n`;
+          let out = `"""\nAutogenerated Pydantic v2 Models\nGenerator: Schema Illustrator Studio (1nc0gn30 • NullAI • NullAI)\n"""\nfrom __future__ import annotations\nfrom typing import Optional, List\nfrom uuid import UUID\nfrom datetime import datetime\nfrom pydantic import BaseModel, Field\n\n`;
           for (const ent of entities) {
             out += `class ${capitalize(ent.name)}(BaseModel):\n`;
             if (!ent.fields || ent.fields.length === 0) {
@@ -2083,7 +1729,7 @@ model Deal {
         }
 
         if (target === 'prisma') {
-          let out = `// Autogenerated Prisma Schema\n// Generator: Schema Illustrator Studio (Neal Frazier Tech • NullAI)\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\ngenerator client {\n  provider = "prisma-client-js"\n}\n\n`;
+          let out = `// Autogenerated Prisma Schema\n// Generator: Schema Illustrator Studio (1nc0gn30 • NullAI • NullAI)\n\ndatasource db {\n  provider = "postgresql"\n  url      = env("DATABASE_URL")\n}\n\ngenerator client {\n  provider = "prisma-client-js"\n}\n\n`;
           for (const ent of entities) {
             out += `model ${capitalize(ent.name)} {\n`;
             for (const f of ent.fields || []) {
@@ -2101,7 +1747,7 @@ model Deal {
         }
 
         if (target === 'sql') {
-          let out = `-- Autogenerated PostgreSQL DDL\n-- Generator: Schema Illustrator Studio (Neal Frazier Tech • NullAI)\n\n`;
+          let out = `-- Autogenerated PostgreSQL DDL\n-- Generator: Schema Illustrator Studio (1nc0gn30 • NullAI • NullAI)\n\n`;
           for (const ent of entities) {
             out += `CREATE TABLE IF NOT EXISTS ${ent.name} (\n`;
             const colDefs = [];
@@ -2130,7 +1776,7 @@ model Deal {
         }
 
         if (target === 'graphql') {
-          let out = `# Autogenerated GraphQL SDL\n# Generator: Schema Illustrator Studio (Neal Frazier Tech • NullAI)\n\n`;
+          let out = `# Autogenerated GraphQL SDL\n# Generator: Schema Illustrator Studio (1nc0gn30 • NullAI • NullAI)\n\n`;
           for (const ent of entities) {
             out += `type ${capitalize(ent.name)} {\n`;
             for (const f of ent.fields || []) {
@@ -2552,12 +2198,8 @@ model Deal {
       });
       btnCloseDrawer.addEventListener('click', () => transpilerDrawer.classList.remove('open'));
 
-      // Copy Code & Action Interceptors
+      // Copy Code & SVG Export
       btnCopyCode.addEventListener('click', () => {
-        if (!isProLicensed) {
-          proPaywallModal.classList.add('open');
-          return;
-        }
         const text = document.getElementById('drawer-code-view').textContent;
         navigator.clipboard.writeText(text).then(() => {
           showToast('Code copied to clipboard!');
@@ -2565,10 +2207,6 @@ model Deal {
       });
 
       btnExportSvg.addEventListener('click', () => {
-        if (!isProLicensed) {
-          proPaywallModal.classList.add('open');
-          return;
-        }
         const svgContent = new XMLSerializer().serializeToString(stage);
         const blob = new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' });
         const url = URL.createObjectURL(blob);
@@ -2589,12 +2227,6 @@ model Deal {
       btnCloseModal.addEventListener('click', () => metricsModal.classList.remove('open'));
       metricsModal.addEventListener('click', (e) => {
         if (e.target === metricsModal) metricsModal.classList.remove('open');
-      });
-
-      // Pro Paywall Modal
-      btnClosePaywallModal.addEventListener('click', () => proPaywallModal.classList.remove('open'));
-      proPaywallModal.addEventListener('click', (e) => {
-        if (e.target === proPaywallModal) proPaywallModal.classList.remove('open');
       });
 
       // Theme toggle
@@ -2644,83 +2276,12 @@ model Deal {
         updateTransform();
       });
 
-      // License Key Activations
-      function handleActivation(inputElem) {
-        const key = (inputElem ? inputElem.value : '').trim();
-        if (key.length >= 3 || key.toUpperCase() === 'SCHEMA-PRO-2026' || key.toUpperCase() === 'SOVEREIGN-PRO-2026' || key.includes('@')) {
-          activateProState();
-          if (proPaywallModal) {
-            proPaywallModal.classList.remove('open');
-            proPaywallModal.style.display = 'none';
-          }
-          showToast('⭐ Pro License Activated! Schema Illustrator Studio is unlocked.');
-          renderTranspilation(currentTarget);
-        } else {
-          showToast('Please enter a valid license key or receipt email.');
-        }
-      }
-
-      const btnSubmit = document.getElementById('btn-submit-license');
-      if (btnSubmit) {
-        btnSubmit.addEventListener('click', () => {
-          handleActivation(document.getElementById('license-key-input'));
-        });
-      }
-      const btnModal = document.getElementById('btnActivateKey') || document.getElementById('btn-modal-activate');
-      if (btnModal) {
-        btnModal.addEventListener('click', () => {
-          handleActivation(document.getElementById('license-input') || document.getElementById('modal-key-input'));
-        });
-      }
-      const btnBanner = document.getElementById('btn-paywall-key') || document.getElementById('btn-banner-activate');
-      if (btnBanner) {
-        btnBanner.addEventListener('click', () => {
-          if (proPaywallModal) {
-            proPaywallModal.classList.add('open');
-            proPaywallModal.style.display = 'flex';
-          }
-        });
-      }
-
-      window.openLicenseModal = function() {
-        if (proPaywallModal) {
-          proPaywallModal.classList.add('open');
-          proPaywallModal.style.display = 'flex';
-        }
-      };
-
-      window.closeLicenseModal = function() {
-        if (proPaywallModal) {
-          proPaywallModal.classList.remove('open');
-          proPaywallModal.style.display = 'none';
-        }
-      };
-
-      window.activateLicenseKey = function(providedKey) {
-        const inp = document.getElementById('license-input') || document.getElementById('modal-key-input');
-        if (providedKey && inp) inp.value = providedKey;
-        handleActivation(inp);
-      };
-
-      // Solana Tip Checkout triggers
-      function triggerSolanaCheckout() {
-        const solanaAddress = 'GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK';
-        navigator.clipboard?.writeText(solanaAddress);
-        showToast('◎ Solana receiver copied to clipboard: ' + solanaAddress);
-      }
-
-      const btnBannerSol = document.getElementById('btn-banner-solana');
-      if (btnBannerSol) btnBannerSol.addEventListener('click', triggerSolanaCheckout);
-      const btnOverlaySol = document.getElementById('btn-overlay-solana');
-      if (btnOverlaySol) btnOverlaySol.addEventListener('click', triggerSolanaCheckout);
-      const btnModalSol = document.getElementById('btn-modal-solana');
-      if (btnModalSol) btnModalSol.addEventListener('click', triggerSolanaCheckout);
-
       // Initialize with default sample
       editor.value = BUILTIN_SAMPLES.ecommerce.code;
       parseAndRender();
 
     })();
   </script>
+  <script src="/assets/sovereign-upgrade.js" defer></script>
 </body>
 </html>

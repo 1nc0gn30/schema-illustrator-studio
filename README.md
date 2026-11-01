@@ -17,7 +17,7 @@
 [![Zero Runtime Dependencies](https://img.shields.io/badge/dependencies-0%20runtime%20deps-brightgreen.svg)](pyproject.toml)
 [![MCP Server](https://img.shields.io/badge/MCP-Model%20Context%20Protocol-purple.svg)](src/schema_illustrator_studio/mcp_server.py)
 
-**Schema Illustrator Studio** is a 100% in-browser sovereign schema visualization, transpilation, ERD generation, and quality metrics engine — running live at **[schemaillustrator.nullai.tech](https://schemaillustrator.nullai.tech)** and inside Zoth Studio at **[zoth.nullai.tech/tools/schema-illustrator-studio](https://zoth.nullai.tech/tools/schema-illustrator-studio)**. It seamlessly converts between **SQL DDL**, **JSON Schema**, **TypeScript Interfaces**, **Prisma Schemas**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and offers 100% free open access with optional **Buy Us a Coffee (Stripe)** and **Solana Tip** (`GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`) support. Attributed to Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30)) • NullAI Platform.
+**Schema Illustrator Studio** is a 100% in-browser sovereign schema visualization, transpilation, ERD generation, and quality metrics engine — running live at **[schemaillustrator.nullai.tech](https://schemaillustrator.nullai.tech)** and inside Zoth Studio at **[zoth.nullai.tech/tools/schema-illustrator-studio](https://zoth.nullai.tech/tools/schema-illustrator-studio)**. It seamlessly converts between **SQL DDL**, **JSON Schema**, **TypeScript Interfaces**, **Prisma Schemas**, and **GraphQL SDL**, generates interactive **SVG Entity-Relationship Diagrams (ERD)** with cubic Bezier relation routing, computes comprehensive **normalization & complexity metrics**, provides an MCP server for AI coding assistants, and offers 100% free open access with optional **Buy Us a Coffee (Stripe)** and **Solana Tip** (`GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`) support. Attributed to 1nc0gn30 • NullAI ([@1nc0gn30](https://github.com/1nc0gn30)) • NullAI Platform.
 
 ---
 
@@ -146,7 +146,7 @@ flowchart TD
 
 `schema-illustrator-studio` executes **100% locally in the browser** without external API servers:
 - **Instant Client Utility**: Multi-dialect AST parser (SQL DDL, JSON Schema, TypeScript, Prisma, GraphQL), interactive SVG vector diagram engine, and relational complexity analyzer execute completely client-side.
-- **Dual Monetization Rails**: Glassmorphic sales banner ($19 founding lifetime vs $79 regular), dual Stripe + Solana Tip checkout rails, frosted glass output paywall blurs, and 1-click license unlocks (`?licensed=true`).
+- **Dual Monetization Rails**: Glassmorphic sales banner ($0 open-access sovereign vs $0 regular), dual Stripe + Solana Tip checkout rails, frosted glass output paywall blurs, and 1-click license unlocks (`?licensed=true`).
 - **Triple-Viewport Automated Verification**: Headless Chrome tests verify 0 console errors and 0px horizontal overflow across mobile (390px), tablet (820px), and desktop (1425px).
 
 | Viewport | Dimensions | Console Errors | Horizontal Overflow | Verification Status |
@@ -173,7 +173,7 @@ pip install -e .
 ### 1. Launch Schema Studio Web UI
 
 ```bash
-# Starts local UI server at http://127.0.0.1:8765
+# Starts local UI server at http://127.0.0.1:8099
 schema-illustrator serve --open
 ```
 
@@ -398,4 +398,4 @@ schema-illustrator test
 ## 📄 License & Attribution
 
 This project is licensed under the **MIT License**.  
-Engineered by Neal Frazier ([@1nc0gn30](https://github.com/1nc0gn30)) • [Neal Frazier Tech](https://nealfrazier.tech) • [NullAI Platform](https://nullai.tech).
+Engineered by 1nc0gn30 ([@1nc0gn30](https://github.com/1nc0gn30)) • [1nc0gn30 • NullAI](https://nullai.tech) • [NullAI Platform](https://nullai.tech).

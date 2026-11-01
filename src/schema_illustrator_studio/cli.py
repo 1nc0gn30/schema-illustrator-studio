@@ -291,7 +291,8 @@ def cmd_metrics(args: argparse.Namespace, t: Theme) -> int:
 def cmd_samples(args: argparse.Namespace, t: Theme) -> int:
     """Handle 'samples' subcommand."""
     try:
-        if args.list or not args.name:
+        name = getattr(args, "sample_name", None) or getattr(args, "name", None)
+        if args.list:
             templates = list_sample_templates()
             lines = [f"{t.bold('Available Built-In Schema Templates:')}\n"]
             for tmpl in templates:
@@ -301,10 +302,10 @@ def cmd_samples(args: argparse.Namespace, t: Theme) -> int:
             output_result("\n".join(lines), None)
             return 0
 
-        name = args.name
-        fmt = args.format or "sql"
+        name = name or "ecommerce"
+        fmt = getattr(args, "format", None)
 
-        tmpl_code = get_sample_template(name, format_name=fmt)
+        tmpl_code = get_sample_template(name, template_name=name, format_name=fmt)
         output_result(tmpl_code, args.output)
         return 0
     except Exception as e:
@@ -655,8 +656,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     # 6. samples
     p_smp = subparsers.add_parser("samples", aliases=["sample"], help="Output built-in schema template.")
-    p_smp.add_argument("-n", "--name", choices=["ecommerce", "auth_users", "social_graph", "saas_billing"], default="ecommerce", help="Template name.")
-    p_smp.add_argument("-f", "--format", choices=["sql", "json-schema", "ts", "graphql"], default="sql", help="Template format.")
+    p_smp.add_argument("sample_name", nargs="?", default=None, help="Optional template name (ecommerce, auth, social, saas).")
+    p_smp.add_argument("-n", "--name", choices=["ecommerce", "auth", "auth_users", "social", "social_graph", "saas", "saas_billing"], default=None, help="Template name.")
+    p_smp.add_argument("-f", "--format", choices=["sql", "json-schema", "ts", "graphql"], default=None, help="Template format.")
     p_smp.add_argument("-l", "--list", action="store_true", help="List all available sample templates.")
     p_smp.add_argument("-o", "--output", help="Write output to file.")
     p_smp.add_argument("--no-color", action="store_true", help="Disable color formatting.")
