@@ -2282,6 +2282,22 @@ model Deal {
 
     })();
   </script>
-  <script src="/assets/sovereign-upgrade.js" defer></script>
+  
+
+  <script src="/sovereign_tutorial.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      if (window.createSovereignTutorial) {
+        window.createSovereignTutorial({
+          toolId: "schema-illustrator-studio",
+          toolName: "Schema Illustrator Studio",
+          tagline: "Visualize JSON-Schema and database models into interactive entity diagrams!",
+          accentColor: "#38BDF8",
+          steps: [{"icon": "\ud83d\udcca", "title": "See Your Data Structures", "desc": "Paste any JSON Schema or SQL table definition to generate clear, interactive entity-relationship diagrams."}, {"icon": "\ud83d\udd17", "title": "Foreign Key & Relation Links", "desc": "Explore connected nodes and field types visually to spot missing indexes or circular loops."}, {"icon": "\ud83d\udcbb", "title": "Multi-Language Types", "desc": "Export TypeScript interfaces, Python Pydantic models, or Rust structs in a single click."}]
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
