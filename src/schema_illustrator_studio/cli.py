@@ -16,7 +16,7 @@ import platform
 import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, TextIO, Union
+from typing import Any, Dict, List, Optional, Sequence, TextIO, Tuple, Union
 
 from schema_illustrator_studio import (
     SAMPLE_TEMPLATES,
