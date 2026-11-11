@@ -13,8 +13,8 @@
     "schema-illustrator-studio": "./bin/schema-illustrator.js"
   },
   "scripts": {
-    "start": "python3 -m schema_illustrator_studio.cli serve --port 8102 --no-open",
-    "serve": "python3 -m http.server 8102 --directory public",
+    "start": "python3 -m schema_illustrator_studio.cli serve --port 8099 --no-open",
+    "serve": "python3 -m http.server 8099 --directory public",
     "electron": "electron .",
     "app": "electron .",
     "test": "pytest tests/",

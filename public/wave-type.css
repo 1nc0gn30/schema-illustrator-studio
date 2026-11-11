@@ -30,15 +30,7 @@
   line-height: 1.5;
 }
 
-/* Paywall lock overlay explanation */
-.paywall-lock-card p {
-  max-width: 48ch;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.55;
-}
-
-/* Pro benefit items in modal */
+/* Benefit items in modal */
 .benefit-item p {
   max-width: 48ch;
   line-height: 1.5;
@@ -91,9 +83,6 @@ p {
 .banner-price,
 .banner-price del,
 .banner-price strong,
-.paywall-price-tag,
-.paywall-price-tag .old-price,
-.paywall-price-tag .new-price,
 .old-price,
 .new-price,
 .pricing-value,
@@ -118,13 +107,12 @@ p {
   letter-spacing: -0.02em;
 }
 
-/* Section, dialog, and paywall headings */
+/* Section and dialog headings */
 .modal-title {
   letter-spacing: -0.015em;
 }
 
-h3,
-.paywall-lock-card h3 {
+h3 {
   letter-spacing: -0.015em;
 }
 

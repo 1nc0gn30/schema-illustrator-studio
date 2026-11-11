@@ -10,14 +10,14 @@ const fs = require('fs');
 const rootDir = path.resolve(__dirname, '..');
 const srcDir = path.join(rootDir, 'src');
 const args = process.argv.slice(2);
+const defaultPort = process.env.PORT || '8099';
 
-// Check if user requested web mode, desktop app, or CLI
 const isWeb = args[0] === 'web' || args.includes('--web');
 const isAppRequest = !isWeb && (args.length === 0 || args.includes('--gui') || args.includes('--app') || args.includes('--desktop') || args[0] === 'app' || args[0] === 'desktop' || args[0] === 'gui');
 
 if (isWeb) {
-  console.log('⚡ Launching Schema Illustrator Studio Web UI on http://127.0.0.1:8765 ...');
-  const pyChild = spawn('python3', ['-m', 'schema_illustrator_studio.cli', 'serve', '--port', '8765', '--no-open'], {
+  console.log(`Launching Schema Illustrator Studio Web UI on http://127.0.0.1:${defaultPort} ...`);
+  const pyChild = spawn('python3', ['-m', 'schema_illustrator_studio.cli', 'serve', '--port', String(defaultPort), '--no-open'], {
     cwd: rootDir,
     stdio: 'inherit',
     env: {
@@ -27,29 +27,13 @@ if (isWeb) {
     },
   });
   pyChild.on('error', (pyErr) => {
-    console.error('[SchemaStudio] Failed to start web server:', pyErr);
+    console.error('[SchemaIllustrator] Failed to start web server:', pyErr);
   });
 } else if (isAppRequest) {
-  console.log('⚡ Launching Schema Illustrator Studio Desktop Workstation...');
-  
-  // Find Electron in local node_modules, sibling micro-repos, or system PATH
-  const candidateElectronPaths = [
-    path.join(rootDir, 'node_modules', '.bin', 'electron'),
-    '/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/zoth-micro-repos/NullAI-HexStrike-AI-Terminal/node_modules/.bin/electron',
-    '/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/zoth-micro-repos/promptmaster-studio/node_modules/.bin/electron',
-    '/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/zoth-micro-repos/jwt-inspector-guard/node_modules/.bin/electron',
-    '/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/zoth-micro-repos/envguard-secrets-vault/node_modules/.bin/electron',
-    '/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/zoth-micro-repos/cron-rhythm-studio/node_modules/.bin/electron',
-    '/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/zoth-micro-repos/regex-droid-builder/node_modules/.bin/electron',
-  ];
+  console.log('Launching Schema Illustrator Studio Desktop Workstation...');
 
-  let electronCmd = 'electron';
-  for (const p of candidateElectronPaths) {
-    if (fs.existsSync(p)) {
-      electronCmd = p;
-      break;
-    }
-  }
+  const localElectron = path.join(rootDir, 'node_modules', '.bin', 'electron');
+  const electronCmd = fs.existsSync(localElectron) ? localElectron : 'electron';
 
   const child = spawn(electronCmd, ['.'], {
     cwd: rootDir,
@@ -63,8 +47,8 @@ if (isWeb) {
   });
 
   child.on('error', (err) => {
-    console.warn(`[SchemaStudio] Electron notice: ${err.message}. Starting web UI on port 8765...`);
-    const pyChild = spawn('python3', ['-m', 'schema_illustrator_studio.cli', 'serve', '--port', '8765', '--no-open'], {
+    console.warn(`[SchemaIllustrator] Electron notice: ${err.message}. Starting web UI on port ${defaultPort}...`);
+    const pyChild = spawn('python3', ['-m', 'schema_illustrator_studio.cli', 'serve', '--port', String(defaultPort), '--no-open'], {
       cwd: rootDir,
       stdio: 'inherit',
       env: {
@@ -73,11 +57,10 @@ if (isWeb) {
       },
     });
     pyChild.on('error', (pyErr) => {
-      console.error('[SchemaStudio] Failed to start backend:', pyErr);
+      console.error('[SchemaIllustrator] Failed to start backend:', pyErr);
     });
   });
 } else {
-  // Delegate to Python CLI / MCP engine
   const child = spawn('python3', ['-m', 'schema_illustrator_studio.cli', ...args], {
     cwd: rootDir,
     stdio: 'inherit',

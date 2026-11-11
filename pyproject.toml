@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [
-    { name = "Schema Illustrator Studio Contributors" }
+    { name = "1nc0gn30", email = "dev@nullai.tech" }
 ]
 keywords = [
     "schema",

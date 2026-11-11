@@ -2,10 +2,10 @@
 Version=1.0
 Type=Application
 Name=Schema Illustrator Studio
-GenericName=Visual ERD Architect & Schema Workstation
+GenericName=Multi-Format Schema Parser & Interactive ERD Studio
 Comment=Multi-Format Schema Parser, Visual Interactive SVG/Mermaid ERD Studio, Transpiler & Mock Data Synthesizer
 Exec=/usr/local/bin/schema-illustrator desktop
-Icon=/media/neo/f2fdda77-178b-4603-ae80-c7aa4cd97908/schema-illustrator-studio/assets/icon.png
+Icon=schema-illustrator
 Terminal=false
 Categories=Development;Database;System;Utility;
 StartupNotify=true
@@ -16,5 +16,5 @@ Name=Open Schema Illustrator CLI
 Exec=x-terminal-emulator -e "/usr/local/bin/schema-illustrator --help"
 
 [Desktop Action Web]
-Name=Open Web UI (Port 8765)
+Name=Open Web UI (Port 8099)
 Exec=/usr/local/bin/schema-illustrator web

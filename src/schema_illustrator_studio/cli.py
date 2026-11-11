@@ -319,7 +319,7 @@ def cmd_serve(args: argparse.Namespace, t: Theme) -> int:
         from schema_illustrator_studio.ui_server import run_standalone
 
         host = args.host or "127.0.0.1"
-        port = int(args.port or 8765)
+        port = int(args.port or 8099)
         open_browser = not args.no_open
 
         print(f"{t.green('Starting Schema Illustrator Studio Web UI...')}")
@@ -666,7 +666,7 @@ def build_parser() -> argparse.ArgumentParser:
     # 7. serve
     p_srv = subparsers.add_parser("serve", aliases=["ui", "web"], help="Launch Schema Illustrator Studio Web UI (design influenced by Material 3).")
     p_srv.add_argument("--host", default="127.0.0.1", help="Host interface to bind (default: 127.0.0.1).")
-    p_srv.add_argument("-p", "--port", type=int, default=8765, help="Port to bind (default: 8765).")
+    p_srv.add_argument("-p", "--port", type=int, default=8099, help="Port to bind (default: 8099).")
     p_srv.add_argument("--no-open", action="store_true", help="Do not automatically open browser.")
 
     # 8. mcp

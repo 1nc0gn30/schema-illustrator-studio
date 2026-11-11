@@ -576,7 +576,7 @@ class StudioRequestHandler(BaseHTTPRequestHandler):
 
 def start_server(
     host: str = "127.0.0.1",
-    port: int = 8765,
+    port: int = 8099,
     open_browser: bool = False,
     quiet: bool = False,
 ) -> ThreadedHTTPServer:
@@ -605,7 +605,7 @@ def start_server(
     return httpd
 
 
-def run_standalone(host: str = "127.0.0.1", port: int = 8765, open_browser: bool = True) -> None:
+def run_standalone(host: str = "127.0.0.1", port: int = 8099, open_browser: bool = True) -> None:
     """Run server blocking until KeyboardInterrupt."""
     server = start_server(host=host, port=port, open_browser=open_browser)
     try:
@@ -619,5 +619,5 @@ def run_standalone(host: str = "127.0.0.1", port: int = 8765, open_browser: bool
 
 if __name__ == "__main__":
     host = os.environ.get("HOST", "127.0.0.1")
-    port = int(os.environ.get("PORT", 8765))
+    port = int(os.environ.get("PORT", 8099))
     run_standalone(host=host, port=port, open_browser=True)

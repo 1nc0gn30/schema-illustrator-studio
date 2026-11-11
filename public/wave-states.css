@@ -97,8 +97,7 @@
   border-color: var(--primary);
 }
 
-/* License & Activation Inputs */
-.paywall-key-prompt input:focus-visible,
+/* Input Focus */
 #license-key-input:focus-visible,
 .key-activation-row input:focus-visible,
 #license-input:focus-visible {
@@ -189,7 +188,6 @@
   box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
 }
 
-.paywall-key-prompt input:hover,
 #license-key-input:hover,
 .key-activation-row input:hover,
 #license-input:hover {
@@ -220,7 +218,6 @@
   color: var(--text-disabled);
 }
 
-.paywall-key-prompt input:placeholder-shown,
 #license-key-input:placeholder-shown,
 .key-activation-row input:placeholder-shown,
 #license-input:placeholder-shown {
@@ -245,7 +242,6 @@
    -------------------------------------------------------------------------- */
 
 /* Form validation states for license and editor inputs */
-.paywall-key-prompt input:invalid,
 #license-key-input:invalid,
 .key-activation-row input:invalid,
 #license-input:invalid,
@@ -254,7 +250,6 @@
   box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
 }
 
-.paywall-key-prompt input:user-invalid,
 #license-key-input:user-invalid,
 .key-activation-row input:user-invalid,
 #license-input:user-invalid,
