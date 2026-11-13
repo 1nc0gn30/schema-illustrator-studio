@@ -123,11 +123,7 @@
     document.getElementById(`sovCloseBtn-${toolId}`).addEventListener('click', closeModal);
     document.getElementById(`sovActionBtn-${toolId}`).addEventListener('click', closeModal);
 
-    // Auto-launch if not seen
-    if (!localStorage.getItem(`sov_tutorial_seen_${toolId}`)) {
-      setTimeout(openModal, 600);
-    }
-
+    // Do not auto-open blocking splash modal; workstation opens directly
     return {
       open: openModal,
       close: closeModal
