@@ -97,16 +97,6 @@
   border-color: var(--primary);
 }
 
-/* Input Focus */
-#license-key-input:focus-visible,
-.key-activation-row input:focus-visible,
-#license-input:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 1px;
-  border-color: var(--primary);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-}
-
 /* Sovereign Footer Links */
 .sovereign-footer a:focus-visible {
   outline: 2px solid var(--primary);
@@ -188,12 +178,6 @@
   box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
 }
 
-#license-key-input:hover,
-.key-activation-row input:hover,
-#license-input:hover {
-  border-color: rgba(212, 175, 55, 0.45);
-}
-
 .metric-card-box:hover {
   border-color: rgba(212, 175, 55, 0.35);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -218,12 +202,6 @@
   color: var(--text-disabled);
 }
 
-#license-key-input:placeholder-shown,
-.key-activation-row input:placeholder-shown,
-#license-input:placeholder-shown {
-  color: var(--text-disabled);
-}
-
 #metrics-details:empty {
   display: none;
 }
@@ -241,18 +219,12 @@
    High-contrast validation, invalid input boundaries, and error cues
    -------------------------------------------------------------------------- */
 
-/* Form validation states for license and editor inputs */
-#license-key-input:invalid,
-.key-activation-row input:invalid,
-#license-input:invalid,
+/* Form validation states for editor inputs */
 .code-textarea:invalid {
   border-color: #EF4444;
   box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
 }
 
-#license-key-input:user-invalid,
-.key-activation-row input:user-invalid,
-#license-input:user-invalid,
 .code-textarea:user-invalid {
   border-color: #EF4444;
   box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);

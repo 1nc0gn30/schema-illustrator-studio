@@ -27,7 +27,7 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebApplication",
+        "@type": ["WebApplication", "SoftwareApplication"],
         "name": "Schema Illustrator Studio",
         "url": "https://schemaillustrator.nullai.tech",
         "applicationCategory": "DeveloperApplication",
@@ -787,7 +787,7 @@
       <div class="brand-logo">S</div>
       <div class="brand-title">
         Schema Illustrator Studio
-        <span id="licenseBadge" class="badge-pill" style="background: rgba(16,185,129,0.15); color: #10B981; border: 1px solid #10B981;">✦ 100% UNLOCKED</span>
+        <span id="openAccessBadge" class="badge-pill" style="background: rgba(16,185,129,0.15); color: #10B981; border: 1px solid #10B981;">✦ 100% UNLOCKED</span>
       </div>
     </div>
 
@@ -1013,23 +1013,6 @@
       let panY = 60;
       let isPanning = false;
       let startPan = { x: 0, y: 0 };
-      let isProLicensed = true;
-
-      // Always active & unlocked
-      activateProState();
-
-      function activateProState() {
-        isProLicensed = true;
-        const badge = document.getElementById('licenseBadge') || document.getElementById('header-pro-badge');
-        if (badge) {
-          badge.textContent = '✦ 100% UNLOCKED';
-          badge.style.background = 'rgba(16,185,129,0.15)';
-          badge.style.color = '#10B981';
-          badge.style.border = '1px solid #10B981';
-        }
-        const codeView = document.getElementById('drawer-code-view');
-        if (codeView) codeView.classList.remove('locked');
-      }
 
       // Built-in Presets
       const BUILTIN_SAMPLES = {
